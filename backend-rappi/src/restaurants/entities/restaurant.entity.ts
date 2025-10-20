@@ -9,6 +9,24 @@ import { Order } from '../../orders/entities/order.entity';
 import { User } from '../../users/entities/user.entity';
 import { Product } from './product.entity';
 
+export enum RestaurantCategory {
+  PIZZERIA = 'PIZZERIA',
+  HAMBURGUESERIA = 'HAMBURGUESERIA',
+  PARRILLA = 'PARRILLA',
+  VEGETARIANO = 'VEGETARIANO',
+  VEGANO = 'VEGANO',
+  SUSHI = 'SUSHI',
+  ARABE = 'ARABE',
+  CHINO = 'CHINO',
+  MEXICANO = 'MEXICANO',
+  PERUANO = 'PERUANO',
+  CAFETERIA = 'CAFETERIA',
+  PANADERIA = 'PANADERIA',
+  POSTRES = 'POSTRES',
+  RAPIDA = 'RAPIDA',
+  GOURMET = 'GOURMET',
+}
+
 @Entity({ name: 'restaurants' })
 export class Restaurant {
   @PrimaryGeneratedColumn('uuid')
@@ -22,6 +40,9 @@ export class Restaurant {
 
   @Column('varchar')
   address: string;
+
+  @Column({type: 'enum', enum: RestaurantCategory})
+  category: RestaurantCategory
 
   // Relaciones
   @ManyToOne(() => User, (user) => user.restaurants, { onDelete: 'CASCADE' })

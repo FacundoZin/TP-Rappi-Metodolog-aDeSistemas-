@@ -19,6 +19,13 @@ export enum OrderStatus {
   CANCELLED = 'CANCELLED',
 }
 
+export enum PaymentMethod {
+  DEBITO = 'DEBIT',
+  CREDITO = 'CREDIT',
+  TRANSFERENCIABANCARIA = 'TRANSFERENCIABANCARIA', 
+  TRANSFERENCIABILLETERAVIRTUAL = 'TRANSFERENCIABILLETERAVIRTUAL'
+}
+
 @Entity({ name: 'orders' })
 export class Order {
   @PrimaryGeneratedColumn('uuid')
@@ -45,4 +52,7 @@ export class Order {
 
   @OneToMany(() => OrderItem, (item) => item.order, { cascade: true })
   items: OrderItem[];
+
+  @Column({type: 'enum', enum: PaymentMethod})
+  metodoPago: PaymentMethod
 }

@@ -1,7 +1,8 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
 import { Order } from '../../orders/entities/order.entity';
 import { Restaurant } from '../../restaurants/entities/restaurant.entity';
 import { Address } from './address.entity';
+import { Cart } from './cart.entity';
 
 export enum UserRole {
   CLIENT = 'CLIENT',
@@ -39,4 +40,7 @@ export class User {
 
   @OneToMany(() => Restaurant, (restaurant) => restaurant.owner)
   restaurants: Restaurant[];
+
+  @OneToOne(() => Cart, cart => cart.user, { cascade: true })
+  cart: Cart; 
 }

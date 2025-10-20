@@ -13,6 +13,10 @@ export class OrderItem {
   @Column({ type: 'decimal', precision: 10, scale: 2 }) // Precio en el momento de la compra
   price: number;
 
+  
+  @Column({ type: 'varchar', length: 255 })
+  productName: string; // nombre del producto al momento de la compra
+  
   // Relaciones
   @ManyToOne(() => Order, (order) => order.items, { onDelete: 'CASCADE' })
   order: Order;
