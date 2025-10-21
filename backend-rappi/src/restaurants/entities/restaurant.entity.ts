@@ -8,6 +8,7 @@ import {
 import { Order } from '../../orders/entities/order.entity';
 import { User } from '../../users/entities/user.entity';
 import { Product } from './product.entity';
+import { RestaurantAddress } from './restaurant-addres';
 
 export enum RestaurantCategory {
   PIZZERIA = 'PIZZERIA',
@@ -38,9 +39,6 @@ export class Restaurant {
   @Column('text')
   description: string;
 
-  @Column('varchar')
-  address: string;
-
   @Column({type: 'enum', enum: RestaurantCategory})
   category: RestaurantCategory
 
@@ -53,4 +51,7 @@ export class Restaurant {
 
   @OneToMany(() => Order, (order) => order.restaurant)
   orders: Order[];
+
+  @ManyToOne(() => RestaurantAddress, (address) => address.restaurants, {cascade: true, eager: true,})
+  address: RestaurantAddress
 }
