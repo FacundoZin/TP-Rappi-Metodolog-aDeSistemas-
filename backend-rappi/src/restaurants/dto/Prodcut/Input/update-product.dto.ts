@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional, IsNumber, Min, IsBoolean, IsUUID } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsNumber, Min, IsBoolean} from 'class-validator';
 import { Product } from 'src/restaurants/entities/product.entity';
 
 export class UpdateProductDto {
@@ -15,12 +15,12 @@ export class UpdateProductDto {
   price: number;
 
   @IsBoolean()
-  @IsNotEmpty()
+  @IsOptional()
   isAvailable: boolean;
 
 
-  toEntity(existingProduct?: Product): Product {
-    const product = existingProduct ?? new Product();
+  toEntity(existingProduct: Product): Product {
+    const product = existingProduct;
 
     product.name = this.name;
     product.description = this.description;

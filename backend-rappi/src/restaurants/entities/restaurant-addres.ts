@@ -3,8 +3,8 @@ import { Restaurant } from './restaurant.entity';
 
 @Entity()
 export class RestaurantAddress {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   street: string;
@@ -21,6 +21,6 @@ export class RestaurantAddress {
   @Column()
   country: string;
 
-  @OneToMany(() => Restaurant, (restaurant) => restaurant)
+  @OneToMany(() => Restaurant, (restaurant) => restaurant.address)
   restaurants: Restaurant[];
 }

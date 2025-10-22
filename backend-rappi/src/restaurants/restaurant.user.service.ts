@@ -1,8 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { CreateRestaurantDto } from './dto/Restaurant/Input/create-restaurant.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Restaurant } from './entities/restaurant.entity';
-import { Repository } from 'typeorm';
 import { SearchRestaurantQueryObject } from './dto/QueryObjects/SearchRestaurantsQueryObject';
 import { Result } from './Common/Result';
 import { RestaurantQueries } from './Queries/Restaurant.Queries';
@@ -13,19 +9,9 @@ import { ProductPrewievDto } from './dto/Prodcut/Output/prewiev-product.dto';
 
 @Injectable()
 export class RestaurantUserService {
-
-
   constructor(
-    @InjectRepository(Restaurant)
-    private readonly restaurantRepo: Repository<Restaurant>, // repo estándar
-
-    private readonly QueryBuilder: RestaurantQueries, // query helper
+    private readonly QueryBuilder: RestaurantQueries, 
   ){}
-
-
-  create(createRestaurantDto: CreateRestaurantDto) {
-    return 'This action adds a new restaurant';
-  }
 
 
   async searchRestaurants(filters: SearchRestaurantQueryObject): Promise<Result<RestaurantPreviewDto[]>> {
