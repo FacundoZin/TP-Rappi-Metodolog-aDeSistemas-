@@ -12,7 +12,7 @@ import { ProductPrewievDto } from './dto/Prodcut/Output/prewiev-product.dto';
 
 
 @Injectable()
-export class RestaurantsService {
+export class RestaurantUserService {
 
 
   constructor(
@@ -67,4 +67,6 @@ export class RestaurantsService {
     
     return Result.ok(dto);
   }
+
+
 }
