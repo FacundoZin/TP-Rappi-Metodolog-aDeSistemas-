@@ -1,8 +1,14 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
-import { Order } from '../../orders/entities/order.entity';
-import { Restaurant } from '../../restaurants/entities/restaurant.entity';
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  OneToOne,
+} from 'typeorm';
+import { Order } from '../../orders/Domain/entities/order.entity';
 import { UserAddress } from './user-address.entity';
-import { Cart } from './cart.entity';
+import { Cart } from '../../carrito/Domain/entities/cart.entity';
+import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
 
 export enum UserRole {
   CLIENT = 'CLIENT',
@@ -35,12 +41,9 @@ export class User {
   @OneToMany(() => UserAddress, (address) => address.user)
   addresses: UserAddress[];
 
-  @OneToMany(() => Order, (order) => order.user)
-  orders: Order[];
-
   @OneToMany(() => Restaurant, (restaurant) => restaurant.owner)
   restaurants: Restaurant[];
 
-  @OneToOne(() => Cart, cart => cart.user, { cascade: true })
-  cart: Cart; 
+  @OneToOne(() => Cart, (cart) => cart.user, { cascade: true })
+  cart: Cart;
 }

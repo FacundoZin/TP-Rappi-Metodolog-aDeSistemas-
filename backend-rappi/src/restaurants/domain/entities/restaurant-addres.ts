@@ -1,0 +1,26 @@
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Restaurant } from './restaurant.entity';
+
+@Entity()
+export class RestaurantAddress {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column()
+  street: string;
+
+  @Column()
+  height: string;
+
+  @Column()
+  city: string;
+
+  @Column()
+  province: string;
+
+  @Column()
+  country: string;
+
+  @OneToMany(() => Restaurant, (restaurant) => restaurant.address)
+  restaurants: Restaurant[];
+}

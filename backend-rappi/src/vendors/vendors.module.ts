@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { VendorsService } from './vendors.service';
-import { VendorsController } from './vendors.controller';
+import { VendorAdapter } from './Infrastructure/vendor-adapter';
 
 @Module({
-  controllers: [VendorsController],
-  providers: [VendorsService],
+  providers: [VendorsService, VendorAdapter],
+  exports: [VendorsService, VendorAdapter],
 })
 export class VendorsModule {}

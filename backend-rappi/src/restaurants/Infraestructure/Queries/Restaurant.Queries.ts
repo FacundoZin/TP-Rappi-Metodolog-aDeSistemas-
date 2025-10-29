@@ -1,8 +1,8 @@
 import { Repository } from 'typeorm';
-import { SearchRestaurantQueryObject } from '../Application/dto/QueryObjects/SearchRestaurantsQueryObject';
+import { SearchRestaurantQueryObject } from '../../Application/dto/QueryObjects/SearchRestaurantsQueryObject';
 import { Injectable } from '@nestjs/common';
-import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
 
 @Injectable()
 export class RestaurantQueries {
