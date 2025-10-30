@@ -4,7 +4,7 @@ import { Order } from './order.entity';
 @Entity({ name: 'order_items' })
 export class OrderItem {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id?: string;
 
   @Column('int')
   quantity: number;

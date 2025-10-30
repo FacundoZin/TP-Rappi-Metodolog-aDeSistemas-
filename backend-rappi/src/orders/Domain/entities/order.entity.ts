@@ -8,22 +8,8 @@ import {
 } from 'typeorm';
 import { OrderItem } from './order-item.entity';
 import { UserVendor } from 'src/vendors/Domain/entities/vendor.entity';
-
-export enum OrderStatus {
-  PENDING = 'PENDING',
-  ACCEPTED = 'ACCEPTED',
-  PREPARING = 'PREPARING',
-  DISPATCHED = 'DISPATCHED',
-  DELIVERED = 'DELIVERED',
-  CANCELLED = 'CANCELLED',
-}
-
-export enum PaymentMethod {
-  DEBITO = 'DEBIT',
-  CREDITO = 'CREDIT',
-  TRANSFERENCIABANCARIA = 'TRANSFERENCIABANCARIA',
-  TRANSFERENCIABILLETERAVIRTUAL = 'TRANSFERENCIABILLETERAVIRTUAL',
-}
+import { OrderStatus } from '../valueobjects/OrderStatus';
+import { PaymentMethod } from '../valueobjects/PaymentMethod';
 
 @Entity({ name: 'orders' })
 export class Order {
@@ -72,4 +58,18 @@ export class Order {
 
   @Column({ type: 'enum', enum: PaymentMethod })
   metodoPago: PaymentMethod;
+
+  private canChangeStatus(): boolean {
+    return (
+      this.status !== OrderStatus.CANCELLED &&
+      this.status !== OrderStatus.DELIVERED
+    );
+  }
+
+  public changeStatus(newStatus: OrderStatus): void {
+    if (!this.canChangeStatus()) {
+      throw new Error(`No se puede cambiar el estado de ${this.status}`);
+    }
+    this.status = newStatus;
+  }
 }

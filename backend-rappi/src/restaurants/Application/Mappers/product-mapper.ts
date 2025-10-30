@@ -41,6 +41,7 @@ export class ProductMapper {
 
   static toProductOrderInfo(product: Product): ProductOrderInfoDto {
     return {
+      id: product.id,
       name: product.name,
       price: product.price,
     };
