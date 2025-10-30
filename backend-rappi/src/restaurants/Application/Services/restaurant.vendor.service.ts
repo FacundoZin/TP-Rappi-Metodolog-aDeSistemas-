@@ -1,11 +1,11 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Result } from '../Common/Result';
 import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
 import { RestaurantAddress } from 'src/restaurants/domain/entities/restaurant-addres';
 import { CreateRestaurantDto } from '../dto/Restaurant/Input/create-restaurant.dto';
 import { UpdateRestaurantDto } from '../dto/Restaurant/Input/update-restaurant.dto';
 import { Injectable } from '@nestjs/common';
+import { Result } from 'src/common/result/Result';
 
 @Injectable()
 export class RestaurantVendorService {

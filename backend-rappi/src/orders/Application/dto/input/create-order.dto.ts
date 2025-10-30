@@ -1,4 +1,4 @@
-import { PaymentMethod } from 'src/orders/Domain/entities/order.entity';
+import { PaymentMethod } from 'src/orders/Domain/valueobjects/PaymentMethod';
 import { CreateOrderItemsDto } from './create-orderItem.dto';
 
 export class CreateOrderDto {

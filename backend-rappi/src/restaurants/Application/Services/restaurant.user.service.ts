@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { RestaurantQueries } from 'src/restaurants/Infraestructure/Queries/Restaurant.Queries';
 import { SearchRestaurantQueryObject } from '../dto/QueryObjects/SearchRestaurantsQueryObject';
 import { RestaurantPreviewDto } from '../dto/Restaurant/Output/preview-restuarant.dto';
-import { Result } from '../Common/Result';
 import { RestaurantViewDto } from '../dto/Restaurant/Output/view-restaurant.dto';
 import { ProductPrewievDto } from '../dto/Prodcut/Output/prewiev-product.dto';
+import { Result } from 'src/common/result/Result';
 
 @Injectable()
 export class RestaurantUserService {

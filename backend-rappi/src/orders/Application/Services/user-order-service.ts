@@ -4,13 +4,13 @@ import { Order } from 'src/orders/Domain/entities/order.entity';
 import { In, Repository } from 'typeorm';
 import { ProductAdapter } from 'src/restaurants/Infraestructure/Adapters/product-adapter';
 import { RestaurantAdapter } from 'src/restaurants/Infraestructure/Adapters/restaurant-adapter';
-import { Result } from '../common/result';
 import { OrderMapper } from '../mappers/order-mapper';
 import { VendorAdapter } from 'src/vendors/Infrastructure/Adapter/vendor-adapter';
 import { CreateOrderDto } from '../dto/input/create-order.dto';
 import { OrderPrewievDto } from '../dto/output/order-preview-dto';
 import { OrderStatusHelper } from 'src/orders/Domain/valueobjects/OrderStatus';
 import { EmailServie } from 'src/orders/Infraestructure/EmailService/email-service';
+import { Result } from 'src/common/result/Result';
 
 @Injectable()
 export class UserOrderService {

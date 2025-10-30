@@ -8,7 +8,7 @@ import {
 
 import { Product } from './product.entity';
 import { RestaurantAddress } from './restaurant-addres';
-import { User } from 'src/users/entities/user.entity';
+import { User } from 'src/users/Domain/entities/user.entity';
 import { Order } from 'src/orders/Domain/entities/order.entity';
 
 export enum RestaurantCategory {

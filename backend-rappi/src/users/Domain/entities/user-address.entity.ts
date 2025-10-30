@@ -15,6 +15,9 @@ export class UserAddress {
   @Column({ type: 'text', nullable: true })
   details?: string;
 
+  @Column({ type: 'int' })
+  height: number;
+
   // Relaciones
   @ManyToOne(() => User, (user) => user.addresses, { onDelete: 'CASCADE' })
   user: User;

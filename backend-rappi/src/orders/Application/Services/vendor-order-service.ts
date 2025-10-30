@@ -5,9 +5,9 @@ import { EmailServie } from 'src/orders/Infraestructure/EmailService/email-servi
 import { In, Repository } from 'typeorm';
 import { OrderPrewievDto } from '../dto/output/order-preview-dto';
 import { OrderStatus } from 'src/orders/Domain/valueobjects/OrderStatus';
-import { Result } from '../common/result';
 import { OrderFullViewDto } from '../dto/output/order-fullview-dto';
 import { OrderMapper } from '../mappers/order-mapper';
+import { Result } from 'src/common/result/Result';
 
 @Injectable()
 export class VendorOrderService {

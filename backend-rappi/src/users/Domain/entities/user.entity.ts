@@ -5,16 +5,10 @@ import {
   PrimaryGeneratedColumn,
   OneToOne,
 } from 'typeorm';
-import { Order } from '../../orders/Domain/entities/order.entity';
 import { UserAddress } from './user-address.entity';
-import { Cart } from '../../carrito/Domain/entities/cart.entity';
+import { Cart } from '../../../carrito/Domain/entities/cart.entity';
 import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
-
-export enum UserRole {
-  CLIENT = 'CLIENT',
-  VENDOR = 'VENDOR',
-  ADMIN = 'ADMIN',
-}
+import { UserRole } from 'src/common/enum/user-role';
 
 @Entity({ name: 'users' })
 export class User {
@@ -24,11 +18,11 @@ export class User {
   @Column({ type: 'varchar', length: 100 })
   name: string;
 
+  @Column({ type: 'varchar', length: 30, unique: true })
+  googleId: string;
+
   @Column({ type: 'varchar', length: 100, unique: true })
   email: string;
-
-  @Column({ type: 'varchar', length: 255 })
-  password?: string; // El '?' es porque no siempre querremos devolverlo
 
   @Column({
     type: 'enum',
@@ -38,7 +32,7 @@ export class User {
   role: UserRole;
 
   // Relaciones
-  @OneToMany(() => UserAddress, (address) => address.user)
+  @OneToMany(() => UserAddress, (address) => address.user, { cascade: true })
   addresses: UserAddress[];
 
   @OneToMany(() => Restaurant, (restaurant) => restaurant.owner)

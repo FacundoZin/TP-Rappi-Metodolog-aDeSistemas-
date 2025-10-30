@@ -4,7 +4,7 @@ import {
   Restaurant,
   RestaurantCategory,
 } from 'src/restaurants/domain/entities/restaurant.entity';
-import { User } from 'src/users/entities/user.entity';
+import { User } from 'src/users/Domain/entities/user.entity';
 
 export class CreateRestaurantDto {
   @IsString()

@@ -1,13 +1,12 @@
 // restaurant-address.service.ts
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Result } from '../Common/Result';
-
 import { RestaurantAddressMapper } from '../Mappers/restaurantaddres-mapper';
 import { RestaurantAddress } from 'src/restaurants/domain/entities/restaurant-addres';
 import { CreateRestaurantAddressDto } from '../dto/Addres/Input/create.restaurantAddress.dto';
 import { UpdateRestaurantAddressDto } from '../dto/Addres/Input/update-restaurantAddress.dto';
 import { Injectable } from '@nestjs/common';
+import { Result } from 'src/common/result/Result';
 
 @Injectable()
 export class RestauranAddressService {

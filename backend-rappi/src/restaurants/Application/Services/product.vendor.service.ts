@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Result } from '../Common/Result';
 import { ProductMapper } from '../Mappers/product-mapper';
 import { Product } from 'src/restaurants/domain/entities/product.entity';
 import { CreateProductDto } from '../dto/Prodcut/Input/create-product.dto';
 import { ProductPrewievDto } from '../dto/Prodcut/Output/prewiev-product.dto';
 import { UpdateProductDto } from '../dto/Prodcut/Input/update-product.dto';
+import { Result } from 'src/common/result/Result';
 
 @Injectable()
 export class ProducVendorService {
