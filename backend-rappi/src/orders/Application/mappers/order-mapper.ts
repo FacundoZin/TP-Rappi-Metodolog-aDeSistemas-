@@ -3,7 +3,7 @@ import { Order } from 'src/orders/Domain/entities/order.entity';
 import { OrderItem } from 'src/orders/Domain/entities/order-item.entity';
 import { UserVendor } from 'src/vendors/Domain/entities/vendor.entity';
 import { ProductOrderInfoDto } from 'src/restaurants/Application/dto/Prodcut/Output/produt-order-info.dto';
-import { VendorOrderInfoDto } from 'src/vendors/dto/vendor-order-info.dto';
+import { VendorOrderInfoDto } from 'src/vendors/Application/dto/vendor-order-info.dto';
 import { CreateOrderDto } from '../dto/input/create-order.dto';
 import { OrderStatus } from 'src/orders/Domain/valueobjects/OrderStatus';
 import { OrderFullViewDto } from '../dto/output/order-fullview-dto';

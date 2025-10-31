@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/user/create-user.dto';
 import { User } from '../Domain/entities/user.entity';
 import { GoogleAuthAdapter } from 'src/auth/Adapter/auth-adapter';
-import { CreateUserTokenDto } from '../../common/token/create-user-token';
+import { CreateUserTokenDto } from '../../auth/dto/input/create-user-token';
 import { AuthUserService } from 'src/auth/services/auth-user-service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';

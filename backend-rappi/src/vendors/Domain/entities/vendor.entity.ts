@@ -1,3 +1,4 @@
+import { UserRole } from 'src/common/enum/user-role';
 import { Order } from 'src/orders/Domain/entities/order.entity';
 import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
@@ -13,8 +14,15 @@ export class UserVendor {
   @Column({ type: 'varchar', length: 100, unique: true })
   email: string;
 
-  @Column({ type: 'varchar', length: 255 })
-  password?: string; // El '?' es porque no siempre querremos devolverlo
+  @Column({ type: 'varchar', length: 30, unique: true })
+  googleId: string;
+
+  @Column({
+    type: 'enum',
+    enum: UserRole,
+    default: UserRole.VENDOR,
+  })
+  role: UserRole;
 
   @OneToMany(() => Order, (order) => order.userVendor)
   orders: Order[];
