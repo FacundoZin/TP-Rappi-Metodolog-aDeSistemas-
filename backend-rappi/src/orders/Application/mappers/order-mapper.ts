@@ -8,10 +8,12 @@ import { CreateOrderDto } from '../dto/input/create-order.dto';
 import { OrderStatus } from 'src/orders/Domain/valueobjects/OrderStatus';
 import { OrderFullViewDto } from '../dto/output/order-fullview-dto';
 import { OrderItemViewDto } from '../dto/output/orderItem-view.dto';
+import { UserInfoForOrderDto } from 'src/users/Aplication/dto/user/provide-user-info.dto';
 
 export class OrderMapper {
   static fromCreateDto(
     dto: CreateOrderDto,
+    userInfo: UserInfoForOrderDto,
     restaurantInfo: any,
     productsInfo: ProductOrderInfoDto[],
     vendorInfo: VendorOrderInfoDto,
@@ -36,9 +38,9 @@ export class OrderMapper {
       restaurantName: restaurantInfo.RestaurantName,
       restaurantAddress: restaurantInfo.RestaurantAddress,
       userId: dto.userId,
-      userName: dto.userName,
-      userAddress: dto.userAddress,
-      userEmail: dto.userEmail,
+      userName: userInfo.username,
+      userAddress: userInfo.useraddrres,
+      userEmail: userInfo.useremail,
       vendorEmail: vendorInfo.email,
       userVendor: { id: vendorInfo.id } as UserVendor,
       items,

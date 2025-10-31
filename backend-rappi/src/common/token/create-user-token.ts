@@ -3,19 +3,11 @@ export class CreateUserTokenDto {
   role: string;
   username: string;
   email: string;
-  address: string;
 
-  constructor(
-    userId: string,
-    role: string,
-    userName: string,
-    email: string,
-    address: string,
-  ) {
+  constructor(userId: string, role: string, userName: string, email: string) {
     this.userId = userId;
     this.role = role;
     this.username = userName;
     this.email = email;
-    this.address = address;
   }
 }

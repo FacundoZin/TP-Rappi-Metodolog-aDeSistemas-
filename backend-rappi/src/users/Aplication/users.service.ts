@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/user/create-user.dto';
 import { User } from '../Domain/entities/user.entity';
 import { GoogleAuthAdapter } from 'src/auth/Adapter/auth-adapter';
-import { CreateUserTokenDto } from './dto/token/create-user-token';
+import { CreateUserTokenDto } from '../../common/token/create-user-token';
 import { AuthUserService } from 'src/auth/services/auth-user-service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -44,13 +44,11 @@ export class UsersService {
     });
     await this.usersRepository.save(newUser);
 
-    const addressString = `${createUserDto.createAddres.street} ${createUserDto.createAddres.height}, ${createUserDto.createAddres.city},`;
     const createTokenDto = new CreateUserTokenDto(
       newUser.id,
-      UserRole.VENDOR,
+      UserRole.CLIENT,
       googleData.name!,
       googleData.email,
-      addressString,
     );
 
     const jwt = await this.authService.generateJwt(createTokenDto);
@@ -74,16 +72,11 @@ export class UsersService {
       return Result.fail('Usuario no registrado', 404);
     }
 
-    const addressString = existingUser.addresses
-      .map((addr) => `${addr.street} ${addr.height || ''}, ${addr.city}`)
-      .join('; ');
-
     const createTokenDto = new CreateUserTokenDto(
       existingUser.id,
       UserRole.VENDOR,
       googleData.name!,
       googleData.email!,
-      addressString,
     );
 
     const jwt = await this.authService.generateJwt(createTokenDto);

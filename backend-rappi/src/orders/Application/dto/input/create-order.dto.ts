@@ -3,9 +3,7 @@ import { CreateOrderItemsDto } from './create-orderItem.dto';
 
 export class CreateOrderDto {
   userId: string;
-  userName: string;
-  userEmail: string;
-  userAddress: string;
+  addresId: string;
   restaurantId: string;
   orderItems: CreateOrderItemsDto[];
   metodoPago: PaymentMethod;

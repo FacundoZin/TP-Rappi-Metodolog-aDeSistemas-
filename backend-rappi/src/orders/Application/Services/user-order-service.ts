@@ -11,6 +11,7 @@ import { OrderPrewievDto } from '../dto/output/order-preview-dto';
 import { OrderStatusHelper } from 'src/orders/Domain/valueobjects/OrderStatus';
 import { EmailServie } from 'src/orders/Infraestructure/EmailService/email-service';
 import { Result } from 'src/common/result/Result';
+import { UserAdapter } from 'src/users/Infraestrucutre/Adapters/user-adapter';
 
 @Injectable()
 export class UserOrderService {
@@ -20,6 +21,7 @@ export class UserOrderService {
     private readonly productAdapter: ProductAdapter,
     private readonly restaurantAdapter: RestaurantAdapter,
     private readonly vendorAdapter: VendorAdapter,
+    private readonly userAdapter: UserAdapter,
     private readonly emailService: EmailServie,
   ) {}
 
@@ -33,7 +35,14 @@ export class UserOrderService {
     const vendorInfo = await this.vendorAdapter.ProvideVendorEmail(
       dto.restaurantId,
     );
+    const userInfo = await this.userAdapter.ProvideUserInfoForOrder(
+      dto.userId,
+      dto.addresId,
+    );
 
+    if (!userInfo.success) {
+      return Result.fail(userInfo.message!, userInfo.errorcode!);
+    }
     if (!restaurantInfo)
       return Result.fail('info de restaurante no encontrada', 404);
 
@@ -45,6 +54,7 @@ export class UserOrderService {
 
     const order = OrderMapper.fromCreateDto(
       dto,
+      userInfo.data!,
       restaurantInfo,
       productsInfo,
       vendorInfo,
@@ -53,7 +63,7 @@ export class UserOrderService {
     try {
       await this.orderRepo.save(order);
       this.emailService
-        .notifyUser(dto.userEmail)
+        .notifyUser(userInfo.data!.useremail)
         .catch((err) => console.error('Error enviando email:', err));
       return Result.ok(true);
     } catch (error) {

@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { OAuth2Client } from 'google-auth-library';
-import { InfoGoogleToken } from '../dto/info-google-token.dto';
+import { InfoGoogleToken } from '../dto/output/info-google-token.dto';
 
 @Injectable()
 export class GoogleAuthAdapter {

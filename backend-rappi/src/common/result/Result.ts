@@ -2,7 +2,7 @@ export class Result<T> {
   success: boolean;
   data?: T;
   message?: string;
-  errorcode?: Number;
+  errorcode?: number;
 
   private constructor(
     success: boolean,
