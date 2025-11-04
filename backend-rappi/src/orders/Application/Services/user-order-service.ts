@@ -63,7 +63,7 @@ export class UserOrderService {
     try {
       await this.orderRepo.save(order);
       this.emailService
-        .notifyUser(userInfo.data!.useremail)
+        .notifyVendor(vendorInfo.email, 'nuevo pedido solicitado!')
         .catch((err) => console.error('Error enviando email:', err));
       return Result.ok(true);
     } catch (error) {

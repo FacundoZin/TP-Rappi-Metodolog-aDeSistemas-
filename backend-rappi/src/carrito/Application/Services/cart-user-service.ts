@@ -6,7 +6,7 @@ import { ProductAdapter } from 'src/restaurants/Infraestructure/Adapters/product
 import { Repository } from 'typeorm';
 
 Injectable();
-export class CartUserService {
+export class UserCartService {
   constructor(
     @InjectRepository(Cart)
     private readonly CartRepo: Repository<Cart>,

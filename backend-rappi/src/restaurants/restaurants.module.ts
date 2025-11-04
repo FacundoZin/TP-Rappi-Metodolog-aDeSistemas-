@@ -6,9 +6,10 @@ import { RestaurantUserService } from './Application/Services/restaurant.user.se
 import { ProducVendorService } from './Application/Services/product.vendor.service';
 import { ProductAdapter } from './Infraestructure/Adapters/product-adapter';
 import { RestaurantAdapter } from './Infraestructure/Adapters/restaurant-adapter';
+import { RestaurantAddress } from './domain/entities/restaurant-addres';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Restaurant])],
+  imports: [TypeOrmModule.forFeature([Restaurant, RestaurantAddress])],
   providers: [
     RestaurantUserService,
     RestaurantQueries,

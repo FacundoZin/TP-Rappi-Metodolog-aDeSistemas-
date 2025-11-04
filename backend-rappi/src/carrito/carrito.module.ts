@@ -1,7 +1,13 @@
 import { Module } from '@nestjs/common';
-import { ProductAdapter } from 'src/restaurants/Infraestructure/Adapters/product-adapter';
+import { UserCartService } from './Application/Services/cart-user-service';
+import { RestaurantsModule } from 'src/restaurants/restaurants.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CartItem } from './Domain/entities/cart-item.entity';
+import { Cart } from './Domain/entities/cart.entity';
 
 @Module({
-  imports: [ProductAdapter],
+  imports: [RestaurantsModule, TypeOrmModule.forFeature([Cart, CartItem])],
+  providers: [UserCartService],
+  exports: [UserCartService],
 })
 export class CarritoModule {}

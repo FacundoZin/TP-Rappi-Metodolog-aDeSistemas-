@@ -98,7 +98,10 @@ export class VendorOrderService {
       await this.orderRepo.save(order);
 
       this.emailService
-        .notifyUser(order.userEmail)
+        .notifyUser(
+          order.userEmail,
+          'su pedido ahora esta en estado:' + newStatus,
+        )
         .then(() => console.log('Email enviado'))
         .catch((err) => console.error('Error enviando email:', err));
 

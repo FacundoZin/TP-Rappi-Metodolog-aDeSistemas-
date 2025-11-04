@@ -1,4 +1,4 @@
 export interface IEmailService {
-  notifyUser(userEmail: string): Promise<void>;
+  notifyUser(userEmail: string, message: string): Promise<void>;
   notifyVendor(vendroEmail, message: string): Promise<void>;
 }
