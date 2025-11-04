@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/user/create-user.dto';
-import { User } from '../Domain/entities/user.entity';
 import { GoogleAuthAdapter } from 'src/auth/Adapter/auth-adapter';
-import { CreateUserTokenDto } from '../../auth/dto/input/create-user-token';
 import { AuthUserService } from 'src/auth/services/auth-user-service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserRole } from 'src/common/enum/user-role';
 import { Result } from 'src/common/result/Result';
+import { User } from 'src/users/Domain/entities/user.entity';
+import { CreateUserDto } from '../dto/user/create-user.dto';
+import { CreateUserTokenDto } from 'src/auth/dto/input/create-user-token';
 
 @Injectable()
-export class UsersService {
+export class UsersAccountService {
   constructor(
     private readonly authService: AuthUserService,
     private readonly authAdapter: GoogleAuthAdapter,
@@ -83,4 +83,8 @@ export class UsersService {
 
     return Result.ok(jwt);
   }
+
+  async CreateAddres() {}
+
+  async DropAddres() {}
 }
