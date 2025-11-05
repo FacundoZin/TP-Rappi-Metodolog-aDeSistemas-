@@ -26,7 +26,10 @@ export class UserOrderService implements IUserOrderService {
     private readonly emailService: EmailServie,
   ) {}
 
-  async CreateOrder(dto: CreateOrderDto): Promise<Result<boolean>> {
+  async CreateOrder(
+    userId: string,
+    dto: CreateOrderDto,
+  ): Promise<Result<boolean>> {
     const restaurantInfo = await this.restaurantAdapter.ProvideInfoToOrder(
       dto.restaurantId,
     );
@@ -37,7 +40,7 @@ export class UserOrderService implements IUserOrderService {
       dto.restaurantId,
     );
     const userInfo = await this.userAdapter.ProvideUserInfoForOrder(
-      dto.userId,
+      userId,
       dto.addresId,
     );
 

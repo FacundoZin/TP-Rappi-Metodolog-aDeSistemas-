@@ -3,7 +3,7 @@ import { CreateOrderDto } from 'src/orders/Application/dto/input/create-order.dt
 import { OrderPrewievDto } from 'src/orders/Application/dto/output/order-preview-dto';
 
 export interface IUserOrderService {
-  CreateOrder(dto: CreateOrderDto): Promise<Result<boolean>>;
+  CreateOrder(userId: string, dto: CreateOrderDto): Promise<Result<boolean>>;
 
   GetUserOrdersPreview(
     userId: string,
