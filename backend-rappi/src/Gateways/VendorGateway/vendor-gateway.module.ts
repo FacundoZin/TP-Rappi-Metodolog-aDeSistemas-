@@ -14,4 +14,4 @@ import { VendorRestaurantController } from './Controllers/vendor-restaurant-cont
     VendorRestaurantController,
   ],
 })
-export class UserGatewayModule {}
+export class VendorGatewayModule {}

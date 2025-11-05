@@ -5,6 +5,8 @@ import { RestaurantsModule } from './restaurants/restaurants.module';
 import { UsersModule } from './users/users.module';
 import { VendorsModule } from './vendors/vendors.module';
 import { CarritoModule } from './carrito/carrito.module';
+import { UserGatewayModule } from './Gateways/UserGateway/user-gateway.module';
+import { VendorGatewayModule } from './Gateways/VendorGateway/vendor-gateway.module';
 
 @Module({
   imports: [
@@ -14,6 +16,8 @@ import { CarritoModule } from './carrito/carrito.module';
     OrdersModule,
     AuthModule,
     CarritoModule,
+    UserGatewayModule,
+    VendorGatewayModule,
   ],
 })
 export class AppModule {}
