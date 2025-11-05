@@ -5,6 +5,8 @@ import { RestaurantsModule } from 'src/restaurants/restaurants.module';
 import { VendorsModule } from 'src/vendors/vendors.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Order } from './Domain/entities/order.entity';
+import { USER_ORDER_SERVICE } from './Domain/ServiceInterfaces/IUserOrderService';
+import { VENDOR_ORDER_SERVICE } from './Domain/ServiceInterfaces/IVendorOrderService';
 
 @Module({
   imports: [
@@ -12,7 +14,16 @@ import { Order } from './Domain/entities/order.entity';
     VendorsModule,
     TypeOrmModule.forFeature([Order]),
   ],
-  providers: [VendorOrderService, UserOrderService],
-  exports: [VendorOrderService, UserOrderService],
+  providers: [
+    {
+      provide: VENDOR_ORDER_SERVICE,
+      useClass: VendorOrderService,
+    },
+    {
+      provide: USER_ORDER_SERVICE,
+      useClass: UserOrderService,
+    },
+  ],
+  exports: [VENDOR_ORDER_SERVICE, USER_ORDER_SERVICE],
 })
 export class OrdersModule {}

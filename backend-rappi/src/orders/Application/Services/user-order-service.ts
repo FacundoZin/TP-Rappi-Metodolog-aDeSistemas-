@@ -12,9 +12,10 @@ import { OrderStatusHelper } from 'src/orders/Domain/valueobjects/OrderStatus';
 import { EmailServie } from 'src/orders/Infraestructure/EmailService/email-service';
 import { Result } from 'src/common/result/Result';
 import { UserAdapter } from 'src/users/Infraestrucutre/Adapters/user-adapter';
+import { IUserOrderService } from 'src/orders/Domain/ServiceInterfaces/IUserOrderService';
 
 @Injectable()
-export class UserOrderService {
+export class UserOrderService implements IUserOrderService {
   constructor(
     @InjectRepository(Order)
     private readonly orderRepo: Repository<Order>,

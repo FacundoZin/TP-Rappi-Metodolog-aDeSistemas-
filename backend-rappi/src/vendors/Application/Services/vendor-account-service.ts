@@ -8,9 +8,10 @@ import { Repository } from 'typeorm';
 import { AuthVendorService } from 'src/auth/services/auth-vendor-service';
 import { UserRole } from 'src/common/enum/user-role';
 import { CreateVendorTokenDto } from 'src/auth/dto/input/create-vendor-token.dto';
+import { IVendorAccountService } from 'src/vendors/Domain/serviceInterface/IVendorAccountService';
 
 @Injectable()
-export class VendorsService {
+export class VendorAccountService implements IVendorAccountService {
   constructor(
     private readonly authService: AuthVendorService,
     private readonly authAdapter: GoogleAuthAdapter,

@@ -7,9 +7,10 @@ import { CreateProductDto } from '../dto/Prodcut/Input/create-product.dto';
 import { ProductPrewievDto } from '../dto/Prodcut/Output/prewiev-product.dto';
 import { UpdateProductDto } from '../dto/Prodcut/Input/update-product.dto';
 import { Result } from 'src/common/result/Result';
+import { IProductVendorService } from 'src/restaurants/domain/ServiceInterfaces/IProductVendorService';
 
 @Injectable()
-export class ProducVendorService {
+export class ProducVendorService implements IProductVendorService {
   constructor(
     @InjectRepository(Product)
     private readonly ProductRepo: Repository<Product>,
@@ -44,7 +45,7 @@ export class ProducVendorService {
   async ChangeProductStatus(
     Id: string,
     status: boolean,
-  ): Promise<Result<Boolean>> {
+  ): Promise<Result<boolean>> {
     const product = await this.ProductRepo.findOne({ where: { id: Id } });
     if (!product)
       return Result.fail(

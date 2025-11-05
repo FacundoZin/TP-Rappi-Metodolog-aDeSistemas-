@@ -8,9 +8,10 @@ import { OrderStatus } from 'src/orders/Domain/valueobjects/OrderStatus';
 import { OrderFullViewDto } from '../dto/output/order-fullview-dto';
 import { OrderMapper } from '../mappers/order-mapper';
 import { Result } from 'src/common/result/Result';
+import { IVendorOrderService } from 'src/orders/Domain/ServiceInterfaces/IVendorOrderService';
 
 @Injectable()
-export class VendorOrderService {
+export class VendorOrderService implements IVendorOrderService {
   constructor(
     @InjectRepository(Order)
     private readonly orderRepo: Repository<Order>,

@@ -1,7 +1,8 @@
 import { Controller, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
 
 @Controller('vendor/restaurant')
-@UseGuards(AuthGuard)
+@UseGuards(JwtAuthGuard)
 export class VendorRestaurantController {
   constructor() {}
 }

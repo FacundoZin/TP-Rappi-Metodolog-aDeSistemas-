@@ -1,15 +1,15 @@
+import { Controller, Inject, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
 import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Req,
-  Param,
-  UseGuards,
-} from '@nestjs/common';
+  USERS_ADDRESS_SERVICE,
+  type IUsersAddressService,
+} from 'src/users/Domain/serviceInterfaces/IUser-addres-service';
 
 @Controller('user/addres')
-@UseGuards(AuthGuard)
+@UseGuards(JwtAuthGuard)
 export class UserAddresController {
-  constructor() {}
+  constructor(
+    @Inject(USERS_ADDRESS_SERVICE)
+    private readonly userAddressService: IUsersAddressService,
+  ) {}
 }

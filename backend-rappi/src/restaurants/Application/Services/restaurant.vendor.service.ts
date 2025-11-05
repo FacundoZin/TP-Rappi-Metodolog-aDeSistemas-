@@ -6,9 +6,10 @@ import { CreateRestaurantDto } from '../dto/Restaurant/Input/create-restaurant.d
 import { UpdateRestaurantDto } from '../dto/Restaurant/Input/update-restaurant.dto';
 import { Injectable } from '@nestjs/common';
 import { Result } from 'src/common/result/Result';
+import { IRestaurantVendorService } from 'src/restaurants/domain/ServiceInterfaces/IRestaurantVendorService';
 
 @Injectable()
-export class RestaurantVendorService {
+export class RestaurantVendorService implements IRestaurantVendorService {
   constructor(
     @InjectRepository(Restaurant)
     private readonly _RestaurantRepo: Repository<Restaurant>,

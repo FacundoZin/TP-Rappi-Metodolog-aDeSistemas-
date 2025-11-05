@@ -1,15 +1,15 @@
+import { Controller, Inject, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
 import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Req,
-  Param,
-  UseGuards,
-} from '@nestjs/common';
+  USER_CART_SERVICE,
+  type IUserCartService,
+} from 'src/carrito/Domain/ServiceInterfaces/ICart-userService';
 
 @Controller('user/cart')
-@UseGuards(AuthGuard)
+@UseGuards(JwtAuthGuard)
 export class UserCartController {
-  constructor() {}
+  constructor(
+    @Inject(USER_CART_SERVICE)
+    private readonly cartUserService: IUserCartService,
+  ) {}
 }

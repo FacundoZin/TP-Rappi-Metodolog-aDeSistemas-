@@ -7,9 +7,10 @@ import { CreateRestaurantAddressDto } from '../dto/Addres/Input/create.restauran
 import { UpdateRestaurantAddressDto } from '../dto/Addres/Input/update-restaurantAddress.dto';
 import { Injectable } from '@nestjs/common';
 import { Result } from 'src/common/result/Result';
+import { IRestaurantAddressService } from 'src/restaurants/domain/ServiceInterfaces/IRestaurantAddressService';
 
 @Injectable()
-export class RestauranAddressService {
+export class RestauranAddressService implements IRestaurantAddressService {
   constructor(
     @InjectRepository(RestaurantAddress)
     private readonly _AddresRepo: Repository<RestaurantAddress>,

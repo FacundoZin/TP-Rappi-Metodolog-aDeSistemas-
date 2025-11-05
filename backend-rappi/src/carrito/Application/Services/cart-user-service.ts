@@ -2,11 +2,12 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CartItem } from 'src/carrito/Domain/entities/cart-item.entity';
 import { Cart } from 'src/carrito/Domain/entities/cart.entity';
+import { IUserCartService } from 'src/carrito/Domain/ServiceInterfaces/ICart-userService';
 import { ProductAdapter } from 'src/restaurants/Infraestructure/Adapters/product-adapter';
 import { Repository } from 'typeorm';
 
 Injectable();
-export class UserCartService {
+export class UserCartService implements IUserCartService {
   constructor(
     @InjectRepository(Cart)
     private readonly CartRepo: Repository<Cart>,
@@ -16,6 +17,19 @@ export class UserCartService {
 
     private readonly productAdapter: ProductAdapter,
   ) {}
+
+  async getCartByUser(userId: string): Promise<Cart> {
+    const cart = await this.CartRepo.findOne({
+      where: { userId },
+      relations: ['items'],
+    });
+
+    if (!cart) {
+      throw new NotFoundException('Carrito no encontrado');
+    }
+
+    return cart;
+  }
 
   private async CreateCart(
     IdUser: string,
@@ -36,7 +50,7 @@ export class UserCartService {
     productId: string,
     restaurantId: string,
     quantity: number,
-  ) {
+  ): Promise<Cart> {
     let cart = await this.CartRepo.findOne({ where: { userId: IdUser } });
 
     if (!cart) {
@@ -70,7 +84,10 @@ export class UserCartService {
     return cart;
   }
 
-  async removeProductFromCart(userId: string, productId: string) {
+  async removeProductFromCart(
+    userId: string,
+    productId: string,
+  ): Promise<Cart> {
     const cart = await this.CartRepo.findOne({
       where: { userId },
       relations: ['items'],
@@ -96,7 +113,7 @@ export class UserCartService {
     return cart;
   }
 
-  async IncremenQuantity(userId: string, productId: string) {
+  async IncremenQuantity(userId: string, productId: string): Promise<Cart> {
     const cart = await this.CartRepo.findOne({
       where: { userId },
       relations: ['items'],
@@ -118,7 +135,7 @@ export class UserCartService {
     return cart;
   }
 
-  async DecrementQuantity(userId: string, productId: string) {
+  async DecrementQuantity(userId: string, productId: string): Promise<Cart> {
     const cart = await this.CartRepo.findOne({
       where: { userId },
       relations: ['items'],
@@ -132,34 +149,18 @@ export class UserCartService {
 
     item.quantity -= 1;
 
-    // Si la cantidad llega a 0, eliminar el producto
-    if (item.quantity <= 0) {
-      await this.removeProductFromCart(userId, productId);
-      return await this.CartRepo.findOne({
-        where: { userId },
-        relations: ['items'],
-      });
+    if (item.quantity == 0) {
+      const cartUpdated = await this.removeProductFromCart(userId, productId);
+      return cartUpdated;
     }
 
+    // Recalcular total
     cart.total = cart.items.reduce(
       (sum, i) => sum + Number(i.productPrice) * i.quantity,
       0,
     );
 
     await this.CartRepo.save(cart);
-    return cart;
-  }
-
-  async getCartByUser(userId: string): Promise<Cart> {
-    const cart = await this.CartRepo.findOne({
-      where: { userId },
-      relations: ['items'],
-    });
-
-    if (!cart) {
-      throw new NotFoundException('Carrito no encontrado');
-    }
-
     return cart;
   }
 }

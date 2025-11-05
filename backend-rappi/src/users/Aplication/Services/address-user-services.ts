@@ -4,9 +4,10 @@ import { Repository } from 'typeorm';
 import { UserAddress } from 'src/users/Domain/entities/user-address.entity';
 import { CreateUserAddressDto } from '../dto/addres/create-address.dto';
 import { Result } from 'src/common/result/Result';
+import { IUsersAddressService } from 'src/users/Domain/serviceInterfaces/IUser-addres-service';
 
 @Injectable()
-export class UsersAddresService {
+export class UsersAddresService implements IUsersAddressService {
   constructor(
     @InjectRepository(UserAddress)
     private readonly addressRepository: Repository<UserAddress>,
