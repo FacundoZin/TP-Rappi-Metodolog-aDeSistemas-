@@ -1,10 +1,15 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CartItem } from 'src/carrito/Domain/entities/cart-item.entity';
 import { Cart } from 'src/carrito/Domain/entities/cart.entity';
 import { IUserCartService } from 'src/carrito/Domain/ServiceInterfaces/ICart-userService';
 import { ProductAdapter } from 'src/restaurants/Infraestructure/Adapters/product-adapter';
 import { Repository } from 'typeorm';
+import { AddItemToCartDto } from '../dto/Input/AddItemToCart';
 
 Injectable();
 export class UserCartService implements IUserCartService {
@@ -17,7 +22,6 @@ export class UserCartService implements IUserCartService {
 
     private readonly productAdapter: ProductAdapter,
   ) {}
-
   async getCartByUser(userId: string): Promise<Cart> {
     const cart = await this.CartRepo.findOne({
       where: { userId },
@@ -45,19 +49,16 @@ export class UserCartService implements IUserCartService {
     return cartCreated;
   }
 
-  async addProductToCart(
-    IdUser: string,
-    productId: string,
-    restaurantId: string,
-    quantity: number,
-  ): Promise<Cart> {
+  async addProductToCart(IdUser: string, dto: AddItemToCartDto): Promise<Cart> {
     let cart = await this.CartRepo.findOne({ where: { userId: IdUser } });
 
     if (!cart) {
-      cart = await this.CreateCart(IdUser, restaurantId);
+      cart = await this.CreateCart(IdUser, dto.restaurantId);
     }
 
-    const productInfo = await this.productAdapter.ProvideInfoToCart(productId);
+    const productInfo = await this.productAdapter.ProvideInfoToCart(
+      dto.productId,
+    );
 
     if (!productInfo) {
       throw new Error('No se pudo obtener la información del producto');
@@ -69,15 +70,15 @@ export class UserCartService implements IUserCartService {
 
     const newItem: CartItem = {
       cart: cart,
-      productId: productId,
+      productId: dto.productId,
       productName: productInfo.name,
       productPrice: productInfo.price,
-      quantity: quantity,
+      quantity: dto.quantity,
     };
 
     cart.items.push(newItem);
 
-    cart.total += Number(productInfo.price) * quantity;
+    cart.total += Number(productInfo.price) * dto.quantity;
 
     await this.CartRepo.save(cart);
 
@@ -113,48 +114,39 @@ export class UserCartService implements IUserCartService {
     return cart;
   }
 
-  async IncremenQuantity(userId: string, productId: string): Promise<Cart> {
+  async UpdateProductQuantity(
+    userId: string,
+    productId: string,
+    newQuantity: number,
+  ): Promise<Cart> {
+    if (newQuantity < 0) {
+      throw new BadRequestException(
+        'La cantidad del producto debe ser mayor  a uno',
+      );
+    }
+
     const cart = await this.CartRepo.findOne({
       where: { userId },
       relations: ['items'],
     });
 
-    if (!cart) throw new NotFoundException('Carrito no encontrado');
+    if (!cart) {
+      throw new NotFoundException('Carrito no encontrado');
+    }
 
     const item = cart.items.find((i) => i.productId === productId);
-    if (!item)
+
+    if (!item) {
       throw new NotFoundException('Producto no encontrado en el carrito');
+    }
 
-    item.quantity += 1;
-    cart.total = cart.items.reduce(
-      (sum, i) => sum + Number(i.productPrice) * i.quantity,
-      0,
-    );
-
-    await this.CartRepo.save(cart);
-    return cart;
-  }
-
-  async DecrementQuantity(userId: string, productId: string): Promise<Cart> {
-    const cart = await this.CartRepo.findOne({
-      where: { userId },
-      relations: ['items'],
-    });
-
-    if (!cart) throw new NotFoundException('Carrito no encontrado');
-
-    const item = cart.items.find((i) => i.productId === productId);
-    if (!item)
-      throw new NotFoundException('Producto no encontrado en el carrito');
-
-    item.quantity -= 1;
-
-    if (item.quantity == 0) {
+    if (newQuantity === 0) {
       const cartUpdated = await this.removeProductFromCart(userId, productId);
       return cartUpdated;
     }
 
-    // Recalcular total
+    item.quantity = newQuantity;
+
     cart.total = cart.items.reduce(
       (sum, i) => sum + Number(i.productPrice) * i.quantity,
       0,
