@@ -1,8 +1,10 @@
 import { Result } from 'src/common/result/Result';
+import { CreateVendorDto } from 'src/vendors/Application/dto/create-vendor.dto';
+import { LogingVendorDto } from 'src/vendors/Application/dto/login-vendor.dto';
 
 export interface IVendorAccountService {
-  VendorRegister(createVendorDto: any): Promise<Result<string>>;
-  VendorLogin(googleToken: string): Promise<Result<string>>;
+  VendorRegister(createVendorDto: CreateVendorDto): Promise<Result<string>>;
+  VendorLogin(dto: LogingVendorDto): Promise<Result<string>>;
 }
 
 export const VENDOR_ACCOUNT_SERVICE = Symbol('IVendorAccountService');

@@ -9,6 +9,7 @@ import { AuthVendorService } from 'src/auth/services/auth-vendor-service';
 import { UserRole } from 'src/common/enum/user-role';
 import { CreateVendorTokenDto } from 'src/auth/dto/input/create-vendor-token.dto';
 import { IVendorAccountService } from 'src/vendors/Domain/serviceInterface/IVendorAccountService';
+import { LogingVendorDto } from '../dto/login-vendor.dto';
 
 @Injectable()
 export class VendorAccountService implements IVendorAccountService {
@@ -57,10 +58,10 @@ export class VendorAccountService implements IVendorAccountService {
     return Result.ok(jwt);
   }
 
-  async VendorLogin(googleToken: string): Promise<Result<string>> {
+  async VendorLogin(dto: LogingVendorDto): Promise<Result<string>> {
     let googleData;
     try {
-      googleData = await this.authAdapter.verifyGoogleToken(googleToken);
+      googleData = await this.authAdapter.verifyGoogleToken(dto.googleToken);
     } catch (err) {
       return Result.fail('Token de Google inválido', 401);
     }

@@ -31,18 +31,20 @@ export class RestauranAddressService implements IRestaurantAddressService {
 
   // Editar dirección
   async updateAddress(
-    id: string,
+    idAddres: string,
     dto: UpdateRestaurantAddressDto,
   ): Promise<Result<number>> {
     try {
-      const existing = await this._AddresRepo.findOne({ where: { id } });
+      const existing = await this._AddresRepo.findOne({
+        where: { id: idAddres },
+      });
       if (!existing) return Result.fail('Dirección no encontrada', 404);
 
       const updatedEntity = RestaurantAddressMapper.fromUpdateDto(
         dto,
         existing,
       );
-      const responseDB = await this._AddresRepo.update(id, updatedEntity);
+      const responseDB = await this._AddresRepo.update(idAddres, updatedEntity);
 
       if (!responseDB.affected || responseDB.affected === 0) {
         return Result.fail('No se pudo actualizar la dirección', 500);
@@ -55,12 +57,14 @@ export class RestauranAddressService implements IRestaurantAddressService {
   }
 
   // Borrar dirección
-  async deleteAddress(id: string): Promise<Result<number>> {
+  async deleteAddress(idAddres: string): Promise<Result<number>> {
     try {
-      const existing = await this._AddresRepo.findOne({ where: { id } });
+      const existing = await this._AddresRepo.findOne({
+        where: { id: idAddres },
+      });
       if (!existing) return Result.fail('Dirección no encontrada', 404);
 
-      const responseDB = await this._AddresRepo.delete(id);
+      const responseDB = await this._AddresRepo.delete(idAddres);
 
       if (!responseDB.affected || responseDB.affected === 0) {
         return Result.fail('No se pudo borrar la dirección', 500);

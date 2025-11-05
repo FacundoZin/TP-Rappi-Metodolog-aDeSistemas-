@@ -5,10 +5,10 @@ import { UpdateRestaurantAddressDto } from 'src/restaurants/Application/dto/Addr
 export interface IRestaurantAddressService {
   createAddress(dto: CreateRestaurantAddressDto): Promise<Result<string>>;
   updateAddress(
-    id: string,
+    idAddres: string,
     dto: UpdateRestaurantAddressDto,
   ): Promise<Result<number>>;
-  deleteAddress(id: string): Promise<Result<number>>;
+  deleteAddress(idAddres: string): Promise<Result<number>>;
 }
 
 // Symbol para inyección en módulos
