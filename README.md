@@ -1,15 +1,5 @@
+```mermaid
 graph TB
-    %% CONTRAST COLORS: Texto negro, colores suaves de fondo
-    classDef gateway fill:#B1D0E0,stroke:#333,stroke-width:2px,color:#111;
-    classDef module fill:#C0E8C6,stroke:#333,stroke-width:1px,color:#111;
-    classDef auth fill:#E3B1E0,stroke:#333,stroke-width:1px,color:#111;
-    classDef adapter fill:#FFD6A5,stroke:#333,stroke-width:1px,color:#111;
-    classDef client fill:#FFF,stroke:#333,stroke-width:1px,color:#111;
-
-    subgraph Client Applications
-        CLIENT[Client App]
-        VENDOR[Vendor App]
-    end
 
     subgraph Gateway Layer
         UG[User Gateway]
@@ -63,12 +53,4 @@ graph TB
 
     AD_RES -- provee información restaurante --> OM
     RM -- provee información restaurante --> AD_RES
-
-    %% Adapters legend
-    classDef adapterdesc fill:#FFD6A5,stroke:#FFF,stroke-width:0px,font-size:10px;
-
-    class UG,VG gateway
-    class UM,VM,OM,CM,RM module
-    class AUTH,JWT,GOOGLE auth
-    class AD_PROD,AD_RES adapter
-    class CLIENT,VENDOR client
+```
