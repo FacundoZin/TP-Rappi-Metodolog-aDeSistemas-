@@ -7,9 +7,9 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { OrderItem } from './order-item.entity';
-import { UserVendor } from 'src/vendors/Domain/entities/vendor.entity';
 import { OrderStatus } from '../valueobjects/OrderStatus';
 import { PaymentMethod } from '../valueobjects/PaymentMethod';
+import { UserVendor } from 'src/vendorsAccount/Domain/entities/vendor.entity';
 
 @Entity({ name: 'orders' })
 export class Order {

@@ -5,6 +5,7 @@ import {
   HttpCode,
   HttpException,
   Inject,
+  Param,
   Post,
   Req,
   UseGuards,
@@ -39,6 +40,17 @@ export class UserOrdersController {
     const result = await this.userOrderService.GetUserOrdersPreview(
       req.user.sub,
     );
+
+    if (!result.success) {
+      throw new HttpException(result.message!, result.errorcode!);
+    }
+
+    return result.data;
+  }
+
+  @Get(':idOrder/summary')
+  async getOrderSummary(@Param('idOrder') idOrder: string) {
+    const result = await this.userOrderService.seeOrderSumarry(idOrder);
 
     if (!result.success) {
       throw new HttpException(result.message!, result.errorcode!);

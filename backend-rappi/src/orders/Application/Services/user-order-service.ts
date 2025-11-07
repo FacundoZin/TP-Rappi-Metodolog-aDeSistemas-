@@ -5,14 +5,15 @@ import { In, Repository } from 'typeorm';
 import { ProductAdapter } from 'src/restaurants/Infraestructure/Adapters/product-adapter';
 import { RestaurantAdapter } from 'src/restaurants/Infraestructure/Adapters/restaurant-adapter';
 import { OrderMapper } from '../mappers/order-mapper';
-import { VendorAdapter } from 'src/vendors/Infrastructure/Adapter/vendor-adapter';
 import { CreateOrderDto } from '../dto/input/create-order.dto';
 import { OrderPrewievDto } from '../dto/output/order-preview-dto';
 import { OrderStatusHelper } from 'src/orders/Domain/valueobjects/OrderStatus';
 import { EmailServie } from 'src/orders/Infraestructure/EmailService/email-service';
 import { Result } from 'src/common/result/Result';
-import { UserAdapter } from 'src/users/Infraestrucutre/Adapters/user-adapter';
 import { IUserOrderService } from 'src/orders/Domain/ServiceInterfaces/IUserOrderService';
+import { UserAdapter } from 'src/usersAccount/Infraestrucutre/Adapters/user-adapter';
+import { VendorAdapter } from 'src/vendorsAccount/Infrastructure/Adapter/vendor-adapter';
+import { OrderFullViewDto } from '../dto/output/order-fullview-dto';
 
 @Injectable()
 export class UserOrderService implements IUserOrderService {
@@ -108,6 +109,26 @@ export class UserOrderService implements IUserOrderService {
     } catch (error) {
       console.error('Error al obtener las órdenes del usuario:', error);
       return Result.fail('Error al consultar las órdenes', 500);
+    }
+  }
+
+  async seeOrderSumarry(idOrder: string): Promise<Result<OrderFullViewDto>> {
+    try {
+      const order = await this.orderRepo.findOne({
+        where: { id: idOrder },
+        relations: ['items'],
+      });
+
+      if (!order) {
+        return Result.fail('Orden no encontrada', 404);
+      }
+
+      const dto = OrderMapper.toFullViewDto(order);
+
+      return Result.ok(dto);
+    } catch (error) {
+      console.error('Error al obtener el resumen de orden:', error);
+      return Result.fail('Error al consultar la orden', 500);
     }
   }
 }
