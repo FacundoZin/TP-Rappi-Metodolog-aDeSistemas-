@@ -8,7 +8,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
-import { SearchRestaurantQueryObject } from 'src/restaurants/Application/dto/QueryObjects/SearchRestaurantsQueryObject';
+import { SearchRestaurantQueryObject } from 'src/restaurants/Application/Dtos/QueryObjects/SearchRestaurantsQueryObject';
 import {
   type IRestaurantPublicService,
   RESTAURANT_PUBLIC_SERVICE,

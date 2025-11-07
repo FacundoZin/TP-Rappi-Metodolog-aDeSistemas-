@@ -1,5 +1,5 @@
 import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
-import { RestaurantOrderInfoDto } from '../dto/Restaurant/Output/order-info-restaurant.dto';
+import { RestaurantOrderInfoDto } from '../Dtos/Restaurant/Output/order-info-restaurant.dto';
 
 export class RestaurantMapper {
   static ToOrderInfo(Restaurant: Restaurant): RestaurantOrderInfoDto {

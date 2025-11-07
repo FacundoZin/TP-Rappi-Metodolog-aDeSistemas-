@@ -1,6 +1,6 @@
 import { Result } from 'src/common/result/Result';
-import { CreateRestaurantDto } from 'src/restaurants/Application/dto/Restaurant/Input/create-restaurant.dto';
-import { UpdateRestaurantDto } from 'src/restaurants/Application/dto/Restaurant/Input/update-restaurant.dto';
+import { CreateRestaurantDto } from 'src/restaurants/Application/Dtos/Restaurant/Input/create-restaurant.dto';
+import { UpdateRestaurantDto } from 'src/restaurants/Application/Dtos/Restaurant/Input/update-restaurant.dto';
 
 export interface IRestaurantManager {
   CreateRestaurant(dto: CreateRestaurantDto): Promise<Result<string>>;

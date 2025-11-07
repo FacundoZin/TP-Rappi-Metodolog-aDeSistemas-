@@ -8,8 +8,8 @@ import {
 
 import { Product } from './product.entity';
 import { RestaurantAddress } from './restaurant-addres';
-import { User } from 'src/users/Domain/entities/user.entity';
-import { Order } from 'src/orders/Domain/entities/order.entity';
+import { User } from 'src/usersAccount/Domain/entities/user.entity';
+import { Review } from './review.entity';
 
 export enum RestaurantCategory {
   PIZZERIA = 'PIZZERIA',
@@ -55,4 +55,7 @@ export class Restaurant {
     eager: true,
   })
   address: RestaurantAddress;
+
+  @OneToMany(() => Review, (review) => review.restaurant)
+  reviews: Review[];
 }

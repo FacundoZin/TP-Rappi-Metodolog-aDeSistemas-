@@ -11,8 +11,8 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
-import { CreateRestaurantAddressDto } from 'src/restaurants/Application/dto/Addres/Input/create.restaurantAddress.dto';
-import { UpdateRestaurantAddressDto } from 'src/restaurants/Application/dto/Addres/Input/update-restaurantAddress.dto';
+import { CreateRestaurantAddressDto } from 'src/restaurants/Application/Dtos/Addres/Input/create.restaurantAddress.dto';
+import { UpdateRestaurantAddressDto } from 'src/restaurants/Application/Dtos/Addres/Input/update-restaurantAddress.dto';
 import {
   type IRestaurantAddressManager,
   RESTAURANT_ADDRESS_MANAGER,

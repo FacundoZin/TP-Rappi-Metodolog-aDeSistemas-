@@ -1,6 +1,6 @@
 import { Result } from 'src/common/result/Result';
-import { CreateRestaurantAddressDto } from 'src/restaurants/Application/dto/Addres/Input/create.restaurantAddress.dto';
-import { UpdateRestaurantAddressDto } from 'src/restaurants/Application/dto/Addres/Input/update-restaurantAddress.dto';
+import { CreateRestaurantAddressDto } from 'src/restaurants/Application/Dtos/Addres/Input/create.restaurantAddress.dto';
+import { UpdateRestaurantAddressDto } from 'src/restaurants/Application/Dtos/Addres/Input/update-restaurantAddress.dto';
 
 export interface IRestaurantAddressManager {
   createAddress(dto: CreateRestaurantAddressDto): Promise<Result<string>>;

@@ -3,9 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ProductMapper } from '../Mappers/product-mapper';
 import { Product } from 'src/restaurants/domain/entities/product.entity';
-import { CreateProductDto } from '../dto/Prodcut/Input/create-product.dto';
-import { ProductPrewievDto } from '../dto/Prodcut/Output/prewiev-product.dto';
-import { UpdateProductDto } from '../dto/Prodcut/Input/update-product.dto';
+import { CreateProductDto } from '../Dtos/Prodcut/Input/create-product.dto';
+import { ProductPrewievDto } from '../Dtos/Prodcut/Output/prewiev-product.dto';
+import { UpdateProductDto } from '../Dtos/Prodcut/Input/update-product.dto';
 import { Result } from 'src/common/result/Result';
 import { IProductManager } from 'src/restaurants/domain/ServiceInterfaces/IProductManager';
 

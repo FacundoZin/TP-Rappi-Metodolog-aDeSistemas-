@@ -1,9 +1,9 @@
 import { Product } from 'src/restaurants/domain/entities/product.entity';
-import { CreateProductDto } from '../dto/Prodcut/Input/create-product.dto';
-import { UpdateProductDto } from '../dto/Prodcut/Input/update-product.dto';
+import { CreateProductDto } from '../Dtos/Prodcut/Input/create-product.dto';
+import { UpdateProductDto } from '../Dtos/Prodcut/Input/update-product.dto';
 import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
-import { ProductCartInfoDto } from '../dto/Prodcut/Output/product-cart-info.dto';
-import { ProductOrderInfoDto } from '../dto/Prodcut/Output/produt-order-info.dto';
+import { ProductCartInfoDto } from '../Dtos/Prodcut/Output/product-cart-info.dto';
+import { ProductOrderInfoDto } from '../Dtos/Prodcut/Output/produt-order-info.dto';
 
 export class ProductMapper {
   static fromCreateDto(dto: CreateProductDto): Product {

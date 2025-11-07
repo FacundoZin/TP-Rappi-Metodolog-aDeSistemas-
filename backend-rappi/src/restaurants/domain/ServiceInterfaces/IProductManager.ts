@@ -1,8 +1,8 @@
 import { Result } from 'src/common/result/Result';
-import { CreateProductDto } from 'src/restaurants/Application/dto/Prodcut/Input/create-product.dto';
+import { CreateProductDto } from 'src/restaurants/Application/Dtos/Prodcut/Input/create-product.dto';
 import { Product } from '../entities/product.entity';
-import { ProductPrewievDto } from 'src/restaurants/Application/dto/Prodcut/Output/prewiev-product.dto';
-import { UpdateProductDto } from 'src/restaurants/Application/dto/Prodcut/Input/update-product.dto';
+import { ProductPrewievDto } from 'src/restaurants/Application/Dtos/Prodcut/Output/prewiev-product.dto';
+import { UpdateProductDto } from 'src/restaurants/Application/Dtos/Prodcut/Input/update-product.dto';
 
 export interface IProductManager {
   CreateProduct(dto: CreateProductDto): Promise<Result<string>>;

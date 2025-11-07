@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { SearchRestaurantQueryObject } from '../../Application/dto/QueryObjects/SearchRestaurantsQueryObject';
+import { SearchRestaurantQueryObject } from '../../Application/Dtos/QueryObjects/SearchRestaurantsQueryObject';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';

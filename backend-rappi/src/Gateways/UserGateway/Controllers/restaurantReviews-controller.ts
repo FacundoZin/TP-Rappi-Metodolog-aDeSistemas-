@@ -1,0 +1,50 @@
+import {
+  Body,
+  Controller,
+  Get,
+  HttpException,
+  Inject,
+  Param,
+  Post,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
+import { type RequestWithUser } from 'src/common/HttpRequestWithUser/IRequestWithUser';
+import { CreateReviewDto } from 'src/restaurants/Application/Dtos/Reviews/Input/create-review.dto';
+import {
+  type IRestaurantPublicService,
+  RESTAURANT_PUBLIC_SERVICE,
+} from 'src/restaurants/domain/ServiceInterfaces/IRestaurantPublicService';
+import {
+  type IReviewService,
+  REVIEW_SERVICE,
+} from 'src/restaurants/domain/ServiceInterfaces/IReviewService';
+
+@Controller('restaurants/:id/reviews')
+@UseGuards(JwtAuthGuard)
+export class RestaurantReviewsController {
+  constructor(
+    @Inject(RESTAURANT_PUBLIC_SERVICE)
+    private readonly restaurantPublicService: IRestaurantPublicService,
+    @Inject(REVIEW_SERVICE)
+    private readonly reviewsService: IReviewService,
+  ) {}
+
+  @Post()
+  async postReview(@Req() req: RequestWithUser, @Body() dto: CreateReviewDto) {
+    const result = await this.reviewsService.createReview(dto, req.user.name);
+  }
+
+  @Get()
+  async getReviews(@Param('id') restaurantId: string) {
+    const result =
+      await this.restaurantPublicService.getRestaurantsReviews(restaurantId);
+
+    if (!result.success) {
+      throw new HttpException(result.message!, result.errorcode!);
+    }
+
+    return result.data;
+  }
+}

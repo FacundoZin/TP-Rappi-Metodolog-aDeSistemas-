@@ -17,8 +17,8 @@ import {
   PRODUCT_MANAGER,
   type IProductManager,
 } from 'src/restaurants/domain/ServiceInterfaces/IProductManager';
-import { CreateProductDto } from 'src/restaurants/Application/dto/Prodcut/Input/create-product.dto';
-import { UpdateProductDto } from 'src/restaurants/Application/dto/Prodcut/Input/update-product.dto';
+import { CreateProductDto } from 'src/restaurants/Application/Dtos/Prodcut/Input/create-product.dto';
+import { UpdateProductDto } from 'src/restaurants/Application/Dtos/Prodcut/Input/update-product.dto';
 
 @UseGuards(JwtAuthGuard)
 @Controller('restaurants/products')

@@ -10,14 +10,20 @@ import { ProducManager } from './Application/Services/productManager';
 import { RestaurantManager } from './Application/Services/restaurantManager';
 import { RestaurantPublicService } from './Application/Services/restaurantPublicService';
 import { RESTAURANT_ADDRESS_MANAGER } from './domain/ServiceInterfaces/IRestaurantAddresManager';
-import { PRODUCT_MANAGER } from './domain/ServiceInterfaces/IproductManager';
+import { PRODUCT_MANAGER } from './domain/ServiceInterfaces/IProductManager';
 import { RESTAURANT_PUBLIC_SERVICE } from './domain/ServiceInterfaces/IRestaurantPublicService';
 import { RESTAURANT_MANAGER } from './domain/ServiceInterfaces/IRestaurantManager';
+import { REVIEW_SERVICE } from './domain/ServiceInterfaces/IReviewService';
+import { ReviewService } from './Application/Services/reviewService';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Restaurant, RestaurantAddress])],
   providers: [
     RestaurantQueries,
+    {
+      provide: REVIEW_SERVICE,
+      useClass: ReviewService,
+    },
     {
       provide: RESTAURANT_ADDRESS_MANAGER,
       useClass: RestauranAddressManager,
@@ -38,6 +44,7 @@ import { RESTAURANT_MANAGER } from './domain/ServiceInterfaces/IRestaurantManage
     RestaurantAdapter,
   ],
   exports: [
+    REVIEW_SERVICE,
     RESTAURANT_ADDRESS_MANAGER,
     PRODUCT_MANAGER,
     RESTAURANT_PUBLIC_SERVICE,

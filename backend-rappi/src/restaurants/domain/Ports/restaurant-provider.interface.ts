@@ -1,4 +1,4 @@
-import { RestaurantOrderInfoDto } from 'src/restaurants/Application/dto/Restaurant/Output/order-info-restaurant.dto';
+import { RestaurantOrderInfoDto } from 'src/restaurants/Application/Dtos/Restaurant/Output/order-info-restaurant.dto';
 
 export interface IRestaurantProvider {
   ProvideInfoToOrder(

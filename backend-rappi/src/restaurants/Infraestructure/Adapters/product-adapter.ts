@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ProductCartInfoDto } from 'src/restaurants/Application/dto/Prodcut/Output/product-cart-info.dto';
-import { ProductOrderInfoDto } from 'src/restaurants/Application/dto/Prodcut/Output/produt-order-info.dto';
+import { ProductCartInfoDto } from 'src/restaurants/Application/Dtos/Prodcut/Output/product-cart-info.dto';
+import { ProductOrderInfoDto } from 'src/restaurants/Application/Dtos/Prodcut/Output/produt-order-info.dto';
 import { ProductMapper } from 'src/restaurants/Application/Mappers/product-mapper';
 import { Product } from 'src/restaurants/domain/entities/product.entity';
 import { IProductProvider } from 'src/restaurants/domain/Ports/product-provider.interface';
