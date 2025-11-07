@@ -2,7 +2,7 @@ import { Result } from 'src/common/result/Result';
 import { CreateRestaurantDto } from 'src/restaurants/Application/dto/Restaurant/Input/create-restaurant.dto';
 import { UpdateRestaurantDto } from 'src/restaurants/Application/dto/Restaurant/Input/update-restaurant.dto';
 
-export interface IRestaurantVendorService {
+export interface IRestaurantManager {
   CreateRestaurant(dto: CreateRestaurantDto): Promise<Result<string>>;
   UpdateRestaurant(
     Id: string,
@@ -11,4 +11,4 @@ export interface IRestaurantVendorService {
 }
 
 // Symbol para inyección en módulos
-export const RESTAURANT_VENDOR_SERVICE = Symbol('IRestaurantVendorService');
+export const RESTAURANT_MANAGER = Symbol('IRestaurantManager');

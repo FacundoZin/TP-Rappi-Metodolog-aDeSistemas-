@@ -17,7 +17,7 @@ import {
   USER_ORDER_SERVICE,
 } from 'src/orders/Domain/ServiceInterfaces/IUserOrderService';
 
-@Controller('user/orders')
+@Controller('userOrders')
 @UseGuards(JwtAuthGuard)
 export class UserOrdersController {
   constructor(

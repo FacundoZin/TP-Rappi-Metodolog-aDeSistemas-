@@ -4,7 +4,7 @@ import { Product } from '../entities/product.entity';
 import { ProductPrewievDto } from 'src/restaurants/Application/dto/Prodcut/Output/prewiev-product.dto';
 import { UpdateProductDto } from 'src/restaurants/Application/dto/Prodcut/Input/update-product.dto';
 
-export interface IProductVendorService {
+export interface IProductManager {
   CreateProduct(dto: CreateProductDto): Promise<Result<string>>;
   GetProductById(Id: string): Promise<Result<Product>>;
   deleteProduct(id: string): Promise<Result<number>>;
@@ -14,4 +14,4 @@ export interface IProductVendorService {
 }
 
 // Symbol para inyección
-export const PRODUCT_VENDOR_SERVICE = Symbol('IProductVendorService');
+export const PRODUCT_MANAGER = Symbol('IProductManager');

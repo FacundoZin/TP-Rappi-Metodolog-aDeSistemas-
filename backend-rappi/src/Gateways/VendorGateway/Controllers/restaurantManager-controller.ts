@@ -13,22 +13,22 @@ import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
 import { CreateRestaurantDto } from 'src/restaurants/Application/dto/Restaurant/Input/create-restaurant.dto';
 import { UpdateRestaurantDto } from 'src/restaurants/Application/dto/Restaurant/Input/update-restaurant.dto';
 import {
-  type IRestaurantVendorService,
-  RESTAURANT_VENDOR_SERVICE,
-} from 'src/restaurants/domain/ServiceInterfaces/IRestaurantVendorService';
+  type IRestaurantManager,
+  RESTAURANT_MANAGER,
+} from 'src/restaurants/domain/ServiceInterfaces/IRestaurantManager';
 
-@Controller('vendor/restaurant')
+@Controller('restaurantManager')
 @UseGuards(JwtAuthGuard)
-export class VendorRestaurantController {
+export class RestaurantManagerController {
   constructor(
-    @Inject(RESTAURANT_VENDOR_SERVICE)
-    private readonly restaurantVendorService: IRestaurantVendorService,
+    @Inject(RESTAURANT_MANAGER)
+    private readonly restaurantManager: IRestaurantManager,
   ) {}
 
   @Post()
   @HttpCode(201)
   async createRestaurant(@Body() dto: CreateRestaurantDto) {
-    const result = await this.restaurantVendorService.CreateRestaurant(dto);
+    const result = await this.restaurantManager.CreateRestaurant(dto);
 
     if (!result.success) {
       throw new HttpException(result.message!, result.errorcode!);
@@ -43,7 +43,7 @@ export class VendorRestaurantController {
     @Param('Id') restaurantId: string,
     @Body() dto: UpdateRestaurantDto,
   ) {
-    const result = await this.restaurantVendorService.UpdateRestaurant(
+    const result = await this.restaurantManager.UpdateRestaurant(
       restaurantId,
       dto,
     );

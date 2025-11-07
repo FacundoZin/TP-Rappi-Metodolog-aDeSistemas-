@@ -12,15 +12,15 @@ import {
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
 import type { RequestWithUser } from 'src/common/HttpRequestWithUser/IRequestWithUser';
-import { CreateUserAddressDto } from 'src/users/Aplication/dto/addres/create-address.dto';
+import { CreateUserAddressDto } from 'src/usersAccount/Aplication/dto/addres/create-address.dto';
 import {
-  USERS_ADDRESS_SERVICE,
   type IUsersAddressService,
-} from 'src/users/Domain/serviceInterfaces/IUser-addres-service';
+  USERS_ADDRESS_SERVICE,
+} from 'src/usersAccount/Domain/serviceInterfaces/IUser-addres-service';
 
-@Controller('user/addres')
+@Controller('userAddres')
 @UseGuards(JwtAuthGuard)
-export class UserAddresController {
+export class UserAddresManagerController {
   constructor(
     @Inject(USERS_ADDRESS_SERVICE)
     private readonly userAddressService: IUsersAddressService,

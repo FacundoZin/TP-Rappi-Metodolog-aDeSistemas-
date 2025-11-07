@@ -7,10 +7,10 @@ import { CreateProductDto } from '../dto/Prodcut/Input/create-product.dto';
 import { ProductPrewievDto } from '../dto/Prodcut/Output/prewiev-product.dto';
 import { UpdateProductDto } from '../dto/Prodcut/Input/update-product.dto';
 import { Result } from 'src/common/result/Result';
-import { IProductVendorService } from 'src/restaurants/domain/ServiceInterfaces/IProductVendorService';
+import { IProductManager } from 'src/restaurants/domain/ServiceInterfaces/IProductManager';
 
 @Injectable()
-export class ProducVendorService implements IProductVendorService {
+export class ProducManager implements IProductManager {
   constructor(
     @InjectRepository(Product)
     private readonly ProductRepo: Repository<Product>,

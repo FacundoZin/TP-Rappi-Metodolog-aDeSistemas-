@@ -5,10 +5,10 @@ import { RestaurantPreviewDto } from '../dto/Restaurant/Output/preview-restuaran
 import { RestaurantViewDto } from '../dto/Restaurant/Output/view-restaurant.dto';
 import { ProductPrewievDto } from '../dto/Prodcut/Output/prewiev-product.dto';
 import { Result } from 'src/common/result/Result';
-import { IRestaurantUserService } from 'src/restaurants/domain/ServiceInterfaces/IRestaurantUserService';
+import { IRestaurantPublicService } from 'src/restaurants/domain/ServiceInterfaces/IRestaurantPublicService';
 
 @Injectable()
-export class RestaurantUserService implements IRestaurantUserService {
+export class RestaurantPublicService implements IRestaurantPublicService {
   constructor(private readonly QueryBuilder: RestaurantQueries) {}
 
   async searchRestaurants(

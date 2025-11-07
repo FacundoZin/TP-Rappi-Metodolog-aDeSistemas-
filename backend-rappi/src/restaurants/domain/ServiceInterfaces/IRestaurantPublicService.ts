@@ -3,7 +3,7 @@ import { SearchRestaurantQueryObject } from 'src/restaurants/Application/dto/Que
 import { RestaurantPreviewDto } from 'src/restaurants/Application/dto/Restaurant/Output/preview-restuarant.dto';
 import { RestaurantViewDto } from 'src/restaurants/Application/dto/Restaurant/Output/view-restaurant.dto';
 
-export interface IRestaurantUserService {
+export interface IRestaurantPublicService {
   searchRestaurants(
     filters: SearchRestaurantQueryObject,
   ): Promise<Result<RestaurantPreviewDto[]>>;
@@ -12,4 +12,4 @@ export interface IRestaurantUserService {
 }
 
 // Symbol para inyección en módulos
-export const RESTAURANT_USER_SERVICE = Symbol('IRestaurantUserService');
+export const RESTAURANT_PUBLIC_SERVICE = Symbol('IRestaurantPublicService');

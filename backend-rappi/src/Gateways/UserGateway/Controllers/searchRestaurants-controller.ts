@@ -10,21 +10,22 @@ import {
 import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
 import { SearchRestaurantQueryObject } from 'src/restaurants/Application/dto/QueryObjects/SearchRestaurantsQueryObject';
 import {
-  type IRestaurantUserService,
-  RESTAURANT_USER_SERVICE,
-} from 'src/restaurants/domain/ServiceInterfaces/IRestaurantUserService';
+  type IRestaurantPublicService,
+  RESTAURANT_PUBLIC_SERVICE,
+} from 'src/restaurants/domain/ServiceInterfaces/IRestaurantPublicService';
 
-@Controller('user/restaurants')
+@Controller('searchRestaurants')
 @UseGuards(JwtAuthGuard)
-export class UserRestaurantsController {
+export class searchRestaurantsController {
   constructor(
-    @Inject(RESTAURANT_USER_SERVICE)
-    private readonly restaurantUserService: IRestaurantUserService,
+    @Inject(RESTAURANT_PUBLIC_SERVICE)
+    private readonly restaurantPublicService: IRestaurantPublicService,
   ) {}
 
   @Get()
   async searchRestaurant(@Query() filters: SearchRestaurantQueryObject) {
-    const result = await this.restaurantUserService.searchRestaurants(filters);
+    const result =
+      await this.restaurantPublicService.searchRestaurants(filters);
 
     if (!result.success) {
       throw new HttpException(result.message!, result.errorcode!);
@@ -35,7 +36,7 @@ export class UserRestaurantsController {
 
   @Get(':idRestaurant')
   async getRestaurantById(@Param('idRestaurant') id: string) {
-    const result = await this.restaurantUserService.GetRestaurantById(id);
+    const result = await this.restaurantPublicService.GetRestaurantById(id);
 
     if (!result.success) {
       throw new HttpException(result.message!, result.errorcode!);

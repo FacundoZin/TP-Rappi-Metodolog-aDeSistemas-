@@ -2,21 +2,21 @@ import { Module } from '@nestjs/common';
 import { CarritoModule } from 'src/carrito/carrito.module';
 import { OrdersModule } from 'src/orders/orders.module';
 import { RestaurantsModule } from 'src/restaurants/restaurants.module';
-import { UsersModule } from 'src/users/users.module';
-import { UserAccountController } from './Controllers/user-account-controller';
-import { UserAddresController } from './Controllers/user-address-controller';
-import { UserCartController } from './Controllers/user-cart-controller';
-import { UserOrdersController } from './Controllers/user-orders-controller';
-import { UserRestaurantsController } from './Controllers/user-restaurants-controller';
+import { UserCartController } from './Controllers/userCart-controller';
+import { UserOrdersController } from './Controllers/userOrders-controller';
+import { searchRestaurantsController } from './Controllers/searchRestaurants-controller';
+import { UserAccountController } from './Controllers/userAccount-controller';
+import { UserAddresManagerController } from './Controllers/userAddressManager-controller';
+import { UsersAccountModule } from 'src/usersAccount/users.module';
 
 @Module({
-  imports: [UsersModule, CarritoModule, OrdersModule, RestaurantsModule],
+  imports: [UsersAccountModule, CarritoModule, OrdersModule, RestaurantsModule],
   controllers: [
     UserAccountController,
-    UserAddresController,
+    UserAddresManagerController,
     UserCartController,
     UserOrdersController,
-    UserRestaurantsController,
+    searchRestaurantsController,
   ],
 })
 export class UserGatewayModule {}

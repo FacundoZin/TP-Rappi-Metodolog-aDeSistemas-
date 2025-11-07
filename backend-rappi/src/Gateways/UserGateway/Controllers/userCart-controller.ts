@@ -13,7 +13,6 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
-import { response } from 'express';
 import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
 import { AddItemToCartDto } from 'src/carrito/Application/dto/Input/AddItemToCart';
 import {
@@ -22,7 +21,7 @@ import {
 } from 'src/carrito/Domain/ServiceInterfaces/ICart-userService';
 import type { RequestWithUser } from 'src/common/HttpRequestWithUser/IRequestWithUser';
 
-@Controller('user/cart')
+@Controller('userCart')
 @UseGuards(JwtAuthGuard)
 export class UserCartController {
   constructor(

@@ -14,22 +14,22 @@ import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
 import { CreateRestaurantAddressDto } from 'src/restaurants/Application/dto/Addres/Input/create.restaurantAddress.dto';
 import { UpdateRestaurantAddressDto } from 'src/restaurants/Application/dto/Addres/Input/update-restaurantAddress.dto';
 import {
-  type IRestaurantAddressService,
-  RESTAURANT_ADDRESS_SERVICE,
-} from 'src/restaurants/domain/ServiceInterfaces/IRestaurantAddressService';
+  type IRestaurantAddressManager,
+  RESTAURANT_ADDRESS_MANAGER,
+} from 'src/restaurants/domain/ServiceInterfaces/IRestaurantAddresManager';
 
-@Controller('vendor/restaurantAddres')
+@Controller('restaurantAddres')
 @UseGuards(JwtAuthGuard)
-export class VendorRestaurantAddressController {
+export class restaurantAddressManagerController {
   constructor(
-    @Inject(RESTAURANT_ADDRESS_SERVICE)
-    private readonly restaurantAddresService: IRestaurantAddressService,
+    @Inject(RESTAURANT_ADDRESS_MANAGER)
+    private readonly restaurantAddressManager: IRestaurantAddressManager,
   ) {}
 
   @Post()
   @HttpCode(201)
   async createAddress(@Body() dto: CreateRestaurantAddressDto) {
-    const result = await this.restaurantAddresService.createAddress(dto);
+    const result = await this.restaurantAddressManager.createAddress(dto);
 
     if (!result.success) {
       throw new HttpException(result.message!, result.errorcode!);
@@ -44,7 +44,7 @@ export class VendorRestaurantAddressController {
     @Param('idAddres') idAddres: string,
     @Body() dto: UpdateRestaurantAddressDto,
   ) {
-    const result = await this.restaurantAddresService.updateAddress(
+    const result = await this.restaurantAddressManager.updateAddress(
       idAddres,
       dto,
     );
@@ -61,7 +61,7 @@ export class VendorRestaurantAddressController {
   @Delete(':idAddres')
   @HttpCode(204)
   async deleteAddress(@Param('idAddres') idAddres: string) {
-    const result = await this.restaurantAddresService.deleteAddress(idAddres);
+    const result = await this.restaurantAddressManager.deleteAddress(idAddres);
 
     if (!result.success) {
       throw new HttpException(result.message!, result.errorcode!);

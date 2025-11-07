@@ -8,11 +8,13 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
-import { CreateUserDto } from 'src/users/Aplication/dto/user/create-user.dto';
-import type { IUsersAccountService } from 'src/users/Domain/serviceInterfaces/IUser-accout-service';
-import { USERS_ACCOUNT_SERVICE } from 'src/users/Domain/serviceInterfaces/IUser-accout-service';
+import { CreateUserDto } from 'src/usersAccount/Aplication/dto/user/create-user.dto';
+import {
+  type IUsersAccountService,
+  USERS_ACCOUNT_SERVICE,
+} from 'src/usersAccount/Domain/serviceInterfaces/IUser-accout-service';
 
-@Controller('user/account')
+@Controller('userAccount')
 @UseGuards(JwtAuthGuard)
 export class UserAccountController {
   constructor(

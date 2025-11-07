@@ -16,4 +16,4 @@ import { VendorAccountService } from './Application/Services/vendor-account-serv
   ],
   exports: [VENDOR_ACCOUNT_SERVICE, VendorAdapter],
 })
-export class VendorsModule {}
+export class VendorsAccountModule {}

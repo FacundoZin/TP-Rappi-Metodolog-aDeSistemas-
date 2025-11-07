@@ -23,4 +23,4 @@ import { USERS_ADDRESS_SERVICE } from './Domain/serviceInterfaces/IUser-addres-s
   ],
   exports: [USERS_ACCOUNT_SERVICE, USERS_ADDRESS_SERVICE, UserAdapter],
 })
-export class UsersModule {}
+export class UsersAccountModule {}

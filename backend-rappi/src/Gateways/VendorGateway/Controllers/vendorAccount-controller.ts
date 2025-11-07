@@ -8,14 +8,14 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
-import { CreateVendorDto } from 'src/vendors/Application/dto/create-vendor.dto';
-import { LogingVendorDto } from 'src/vendors/Application/dto/login-vendor.dto';
+import { CreateVendorDto } from 'src/vendorsAccount/Application/dto/create-vendor.dto';
+import { LogingVendorDto } from 'src/vendorsAccount/Application/dto/login-vendor.dto';
 import {
   type IVendorAccountService,
   VENDOR_ACCOUNT_SERVICE,
-} from 'src/vendors/Domain/serviceInterface/IVendorAccountService';
+} from 'src/vendorsAccount/Domain/serviceInterface/IVendorAccountService';
 
-@Controller('vendor/account')
+@Controller('vendorAccount')
 @UseGuards(JwtAuthGuard)
 export class VendorAccountController {
   constructor(
