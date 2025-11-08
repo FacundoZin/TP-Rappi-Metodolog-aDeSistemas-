@@ -5,6 +5,10 @@ import { IUserProviderInterface } from 'src/usersAccount/Domain/Ports/user-provi
 
 @Injectable()
 export class UserAdapter implements IUserProviderInterface {
+  ProvideFavoritesRestaurants(idUser: string): Promise<string[]> {
+    throw new Error('Method not implemented.');
+  }
+
   ProvideUserInfoForOrder(
     idUser: string,
     idAddres: string,

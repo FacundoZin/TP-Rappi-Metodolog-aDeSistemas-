@@ -11,6 +11,9 @@ import {
   REVIEW_SERVICE,
 } from 'src/restaurants/domain/ServiceInterfaces/IReviewService';
 import { ReviewDto } from '../Dtos/Reviews/Output/review.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
+import { In, Repository } from 'typeorm';
 
 @Injectable()
 export class RestaurantPublicService implements IRestaurantPublicService {
@@ -18,6 +21,8 @@ export class RestaurantPublicService implements IRestaurantPublicService {
     private readonly QueryBuilder: RestaurantQueries,
     @Inject(REVIEW_SERVICE)
     private readonly reviewService: IReviewService,
+    @InjectRepository(Restaurant)
+    private readonly restaurantRepo: Repository<Restaurant>,
   ) {}
 
   async searchRestaurants(
@@ -79,5 +84,33 @@ export class RestaurantPublicService implements IRestaurantPublicService {
       await this.reviewService.getReviewsByRestaurant(idRestaurant);
 
     return Result.ok(reviews.data ? reviews.data : []);
+  }
+
+  async getFavoritesRestaurants(
+    idsFavoritos: string[],
+  ): Promise<Result<RestaurantPreviewDto[]>> {
+    try {
+      const restaurants = await this.restaurantRepo.find({
+        where: { id: In(idsFavoritos) },
+      });
+
+      if (!restaurants.length) {
+        return Result.fail('No se encontraron restaurantes favoritos', 404);
+      }
+
+      const previewDto = restaurants.map(
+        (r) =>
+          new RestaurantPreviewDto({
+            id: r.id,
+            name: r.name,
+            description: r.description,
+          }),
+      );
+
+      return Result.ok(previewDto);
+    } catch (error) {
+      console.error(error);
+      return Result.fail('Error al obtener los restaurantes favoritos', 500);
+    }
   }
 }

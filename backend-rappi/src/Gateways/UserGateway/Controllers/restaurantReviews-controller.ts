@@ -21,7 +21,7 @@ import {
   REVIEW_SERVICE,
 } from 'src/restaurants/domain/ServiceInterfaces/IReviewService';
 
-@Controller('restaurants/:id/reviews')
+@Controller('user/restaurants/:id/reviews')
 @UseGuards(JwtAuthGuard)
 export class RestaurantReviewsController {
   constructor(

@@ -21,7 +21,7 @@ import { CreateProductDto } from 'src/restaurants/Application/Dtos/Prodcut/Input
 import { UpdateProductDto } from 'src/restaurants/Application/Dtos/Prodcut/Input/update-product.dto';
 
 @UseGuards(JwtAuthGuard)
-@Controller('restaurants/products')
+@Controller('vendor/restaurant/products')
 export class RestaurantProductsManagerController {
   constructor(
     @Inject(PRODUCT_MANAGER)

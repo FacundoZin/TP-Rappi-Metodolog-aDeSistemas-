@@ -14,7 +14,7 @@ import {
   RESTAURANT_PUBLIC_SERVICE,
 } from 'src/restaurants/domain/ServiceInterfaces/IRestaurantPublicService';
 
-@Controller('searchRestaurants')
+@Controller('user/restaurants')
 @UseGuards(JwtAuthGuard)
 export class searchRestaurantsController {
   constructor(
@@ -37,6 +37,27 @@ export class searchRestaurantsController {
   @Get(':idRestaurant')
   async getRestaurantById(@Param('idRestaurant') id: string) {
     const result = await this.restaurantPublicService.GetRestaurantById(id);
+
+    if (!result.success) {
+      throw new HttpException(result.message!, result.errorcode!);
+    }
+
+    return result.data;
+  }
+
+  @Get('favorites')
+  async getFavoriteRestaurants(@Query('ids') ids: string) {
+    const idsArray = ids ? ids.split(',') : [];
+
+    if (!idsArray.length) {
+      throw new HttpException(
+        'Debes proporcionar al menos un ID de restaurante favorito',
+        400,
+      );
+    }
+
+    const result =
+      await this.restaurantPublicService.getFavoritesRestaurants(idsArray);
 
     if (!result.success) {
       throw new HttpException(result.message!, result.errorcode!);

@@ -3,7 +3,6 @@ export class RestaurantPreviewDto {
   name: string;
   description: string;
 
-
   constructor(partial: Partial<RestaurantPreviewDto>) {
     Object.assign(this, partial);
   }

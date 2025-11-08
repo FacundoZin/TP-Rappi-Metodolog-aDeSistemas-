@@ -17,7 +17,7 @@ import {
 } from 'src/orders/Domain/ServiceInterfaces/IVendorOrderService';
 import { OrderStatus } from 'src/orders/Domain/valueobjects/OrderStatus';
 
-@Controller('vendorOrders')
+@Controller('vendor/orders')
 @UseGuards(JwtAuthGuard)
 export class VendorOrdersController {
   constructor(

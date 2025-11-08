@@ -18,7 +18,7 @@ import {
   USERS_ADDRESS_SERVICE,
 } from 'src/usersAccount/Domain/serviceInterfaces/IUser-addres-service';
 
-@Controller('userAddres')
+@Controller('user/address')
 @UseGuards(JwtAuthGuard)
 export class UserAddresManagerController {
   constructor(

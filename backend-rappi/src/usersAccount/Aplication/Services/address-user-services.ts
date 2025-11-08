@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UserAddress } from 'src/users/Domain/entities/user-address.entity';
 import { CreateUserAddressDto } from '../dto/addres/create-address.dto';
 import { Result } from 'src/common/result/Result';
-import { IUsersAddressService } from 'src/users/Domain/serviceInterfaces/IUser-addres-service';
+import { IUsersAddressService } from 'src/usersAccount/Domain/serviceInterfaces/IUser-addres-service';
+import { UserAddress } from 'src/usersAccount/Domain/entities/user-address.entity';
 
 @Injectable()
 export class UsersAddresService implements IUsersAddressService {

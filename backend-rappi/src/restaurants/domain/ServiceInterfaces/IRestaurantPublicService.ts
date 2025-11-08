@@ -14,6 +14,10 @@ export interface IRestaurantPublicService {
   getRestaurantsReviews(
     idRestaurant: string,
   ): Promise<Result<ReviewDto[] | []>>;
+
+  getFavoritesRestaurants(
+    idsFavoritos: string[],
+  ): Promise<Result<RestaurantPreviewDto[]>>;
 }
 
 export const RESTAURANT_PUBLIC_SERVICE = Symbol('IRestaurantPublicService');

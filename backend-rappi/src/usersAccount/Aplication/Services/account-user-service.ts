@@ -5,10 +5,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserRole } from 'src/common/enum/user-role';
 import { Result } from 'src/common/result/Result';
-import { User } from 'src/users/Domain/entities/user.entity';
 import { CreateUserDto } from '../dto/user/create-user.dto';
 import { CreateUserTokenDto } from 'src/auth/dto/input/create-user-token';
-import { IUsersAccountService } from 'src/users/Domain/serviceInterfaces/IUser-accout-service';
+import { IUsersAccountService } from 'src/usersAccount/Domain/serviceInterfaces/IUser-accout-service';
+import { User } from 'src/usersAccount/Domain/entities/user.entity';
 
 @Injectable()
 export class UsersAccountService implements IUsersAccountService {

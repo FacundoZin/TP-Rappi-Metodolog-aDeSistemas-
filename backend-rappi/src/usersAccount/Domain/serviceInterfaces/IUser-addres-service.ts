@@ -1,6 +1,6 @@
 import { Result } from 'src/common/result/Result';
-import { UserAddress } from 'src/users/Domain/entities/user-address.entity';
-import { CreateUserAddressDto } from 'src/users/Aplication/dto/addres/create-address.dto';
+import { CreateUserAddressDto } from 'src/usersAccount/Aplication/dto/addres/create-address.dto';
+import { UserAddress } from '../entities/user-address.entity';
 
 export interface IUsersAddressService {
   createAddress(

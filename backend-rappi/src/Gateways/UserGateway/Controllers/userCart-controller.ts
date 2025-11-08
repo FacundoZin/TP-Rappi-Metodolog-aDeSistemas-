@@ -21,7 +21,7 @@ import {
 } from 'src/carrito/Domain/ServiceInterfaces/ICart-userService';
 import type { RequestWithUser } from 'src/common/HttpRequestWithUser/IRequestWithUser';
 
-@Controller('userCart')
+@Controller('user/cart')
 @UseGuards(JwtAuthGuard)
 export class UserCartController {
   constructor(

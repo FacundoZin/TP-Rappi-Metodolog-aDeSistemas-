@@ -18,7 +18,7 @@ import {
   RESTAURANT_ADDRESS_MANAGER,
 } from 'src/restaurants/domain/ServiceInterfaces/IRestaurantAddresManager';
 
-@Controller('restaurantAddres')
+@Controller('vendor/restaurant/addres')
 @UseGuards(JwtAuthGuard)
 export class restaurantAddressManagerController {
   constructor(

@@ -6,7 +6,7 @@ import { RestaurantsModule } from './restaurants/restaurants.module';
 import { CarritoModule } from './carrito/carrito.module';
 import { UserGatewayModule } from './Gateways/UserGateway/user-gateway.module';
 import { VendorGatewayModule } from './Gateways/VendorGateway/vendor-gateway.module';
-import { UsersAccountModule } from './usersAccount/users.module';
+import { UsersAccountModule } from './usersAccount/userAccount.module';
 import { VendorsAccountModule } from './vendorsAccount/vendors.module';
 
 @Module({

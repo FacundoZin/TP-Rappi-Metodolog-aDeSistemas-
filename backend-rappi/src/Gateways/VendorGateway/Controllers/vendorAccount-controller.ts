@@ -15,7 +15,7 @@ import {
   VENDOR_ACCOUNT_SERVICE,
 } from 'src/vendorsAccount/Domain/serviceInterface/IVendorAccountService';
 
-@Controller('vendorAccount')
+@Controller('vendor')
 @UseGuards(JwtAuthGuard)
 export class VendorAccountController {
   constructor(

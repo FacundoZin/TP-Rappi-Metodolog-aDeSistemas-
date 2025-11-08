@@ -7,11 +7,13 @@ import { UserOrdersController } from './Controllers/userOrders-controller';
 import { searchRestaurantsController } from './Controllers/searchRestaurants-controller';
 import { UserAccountController } from './Controllers/userAccount-controller';
 import { UserAddresManagerController } from './Controllers/userAddressManager-controller';
-import { UsersAccountModule } from 'src/usersAccount/users.module';
+import { UsersAccountModule } from 'src/usersAccount/userAccount.module';
+import { UserFavoritesController } from './Controllers/favorites-restaurants-controller';
 
 @Module({
   imports: [UsersAccountModule, CarritoModule, OrdersModule, RestaurantsModule],
   controllers: [
+    UserFavoritesController,
     UserAccountController,
     UserAddresManagerController,
     UserCartController,
