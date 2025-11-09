@@ -15,7 +15,7 @@ import { UpdateRestaurantDto } from 'src/restaurants/Application/Dtos/Restaurant
 import {
   type IRestaurantManager,
   RESTAURANT_MANAGER,
-} from 'src/restaurants/domain/ServiceInterfaces/IRestaurantManager';
+} from 'src/restaurants/domain/ServiceInterfaces/Managment/IRestaurantManager';
 
 @Controller('vendor/restaurant')
 @UseGuards(JwtAuthGuard)

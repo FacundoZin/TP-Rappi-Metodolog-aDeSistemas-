@@ -16,7 +16,7 @@ import { UpdateRestaurantAddressDto } from 'src/restaurants/Application/Dtos/Add
 import {
   type IRestaurantAddressManager,
   RESTAURANT_ADDRESS_MANAGER,
-} from 'src/restaurants/domain/ServiceInterfaces/IRestaurantAddresManager';
+} from 'src/restaurants/domain/ServiceInterfaces/Managment/IRestaurantAddresManager';
 
 @Controller('vendor/restaurant/addres')
 @UseGuards(JwtAuthGuard)

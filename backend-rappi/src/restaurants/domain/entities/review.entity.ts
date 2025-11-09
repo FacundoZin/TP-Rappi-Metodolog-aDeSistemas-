@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { Restaurant } from './restaurant.entity';
 import { Stars } from '../valueObjects/stars';
+import { ReviewStatus } from '../Enums/Reviews.status';
 
 @Entity({ name: 'reviews' })
 export class Review {
@@ -24,6 +25,9 @@ export class Review {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @Column({ type: 'enum', enum: ReviewStatus, default: ReviewStatus.PENDING })
+  status: ReviewStatus;
 
   @ManyToOne(() => Restaurant, (restaurant) => restaurant.reviews, {
     onDelete: 'CASCADE',

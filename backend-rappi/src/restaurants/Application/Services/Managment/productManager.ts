@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ProductMapper } from '../Mappers/product-mapper';
 import { Product } from 'src/restaurants/domain/entities/product.entity';
-import { CreateProductDto } from '../Dtos/Prodcut/Input/create-product.dto';
-import { ProductPrewievDto } from '../Dtos/Prodcut/Output/prewiev-product.dto';
-import { UpdateProductDto } from '../Dtos/Prodcut/Input/update-product.dto';
 import { Result } from 'src/common/result/Result';
-import { IProductManager } from 'src/restaurants/domain/ServiceInterfaces/IProductManager';
+import { IProductManager } from 'src/restaurants/domain/ServiceInterfaces/Managment/IProductManager';
+import { CreateProductDto } from '../../Dtos/Prodcut/Input/create-product.dto';
+import { ProductMapper } from '../../Mappers/product-mapper';
+import { ProductPrewievDto } from '../../Dtos/Prodcut/Output/prewiev-product.dto';
+import { UpdateProductDto } from '../../Dtos/Prodcut/Input/update-product.dto';
 
 @Injectable()
 export class ProducManager implements IProductManager {

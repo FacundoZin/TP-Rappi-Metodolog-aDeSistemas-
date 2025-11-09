@@ -2,15 +2,17 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
 import { Review } from 'src/restaurants/domain/entities/review.entity';
-import { IReviewService } from 'src/restaurants/domain/ServiceInterfaces/IReviewService';
+import { IReviewService } from 'src/restaurants/domain/ServiceInterfaces/Discovery/IReviewService';
 import { Repository } from 'typeorm';
-import { ReviewDto } from '../Dtos/Reviews/Output/review.dto';
-import { CreateReviewDto } from '../Dtos/Reviews/Input/create-review.dto';
+
 import { Stars } from 'src/restaurants/domain/valueObjects/stars';
-import { ReviewSummaryDto } from '../Dtos/Reviews/Output/review-summary.dto';
-import { ReviewCreatedDto } from '../Dtos/Reviews/Output/review-created.dto';
-import { reviewMapper } from '../Mappers/review-mapper';
+
 import { Result } from 'src/common/result/Result';
+import { CreateReviewDto } from '../../Dtos/Reviews/Input/create-review.dto';
+import { ReviewCreatedDto } from '../../Dtos/Reviews/Output/review-created.dto';
+import { reviewMapper } from '../../Mappers/review-mapper';
+import { ReviewDto } from '../../Dtos/Reviews/Output/review.dto';
+import { ReviewSummaryDto } from '../../Dtos/Reviews/Output/review-summary.dto';
 
 @Injectable()
 export class ReviewService implements IReviewService {

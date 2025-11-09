@@ -7,3 +7,5 @@ export interface IProductProvider {
     IdProducts: string[],
   ): Promise<ProductOrderInfoDto[] | null>;
 }
+
+export const PRODUCT_PROVIDER = Symbol('IProductProvider');

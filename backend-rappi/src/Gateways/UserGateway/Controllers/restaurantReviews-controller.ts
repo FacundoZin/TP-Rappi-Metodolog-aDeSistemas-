@@ -15,11 +15,11 @@ import { CreateReviewDto } from 'src/restaurants/Application/Dtos/Reviews/Input/
 import {
   type IRestaurantPublicService,
   RESTAURANT_PUBLIC_SERVICE,
-} from 'src/restaurants/domain/ServiceInterfaces/IRestaurantPublicService';
+} from 'src/restaurants/domain/ServiceInterfaces/Discovery/IRestaurantPublicService';
 import {
   type IReviewService,
   REVIEW_SERVICE,
-} from 'src/restaurants/domain/ServiceInterfaces/IReviewService';
+} from 'src/restaurants/domain/ServiceInterfaces/Discovery/IReviewService';
 
 @Controller('user/restaurants/:id/reviews')
 @UseGuards(JwtAuthGuard)

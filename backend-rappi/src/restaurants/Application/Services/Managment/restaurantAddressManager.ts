@@ -1,13 +1,13 @@
 // restaurant-address.service.ts
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { RestaurantAddressMapper } from '../Mappers/restaurantaddres-mapper';
 import { RestaurantAddress } from 'src/restaurants/domain/entities/restaurant-addres';
-import { CreateRestaurantAddressDto } from '../Dtos/Addres/Input/create.restaurantAddress.dto';
-import { UpdateRestaurantAddressDto } from '../Dtos/Addres/Input/update-restaurantAddress.dto';
 import { Injectable } from '@nestjs/common';
 import { Result } from 'src/common/result/Result';
-import { IRestaurantAddressManager } from 'src/restaurants/domain/ServiceInterfaces/IRestaurantAddresManager';
+import { IRestaurantAddressManager } from 'src/restaurants/domain/ServiceInterfaces/Managment/IRestaurantAddresManager';
+import { CreateRestaurantAddressDto } from '../../Dtos/Addres/Input/create.restaurantAddress.dto';
+import { RestaurantAddressMapper } from '../../Mappers/restaurantaddres-mapper';
+import { UpdateRestaurantAddressDto } from '../../Dtos/Addres/Input/update-restaurantAddress.dto';
 
 @Injectable()
 export class RestauranAddressManager implements IRestaurantAddressManager {

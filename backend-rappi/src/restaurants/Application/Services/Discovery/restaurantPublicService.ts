@@ -1,19 +1,20 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { RestaurantQueries } from 'src/restaurants/Infraestructure/Queries/Restaurant.Queries';
-import { SearchRestaurantQueryObject } from '../Dtos/QueryObjects/SearchRestaurantsQueryObject';
-import { RestaurantPreviewDto } from '../Dtos/Restaurant/Output/preview-restuarant.dto';
-import { RestaurantViewDto } from '../Dtos/Restaurant/Output/view-restaurant.dto';
-import { ProductPrewievDto } from '../Dtos/Prodcut/Output/prewiev-product.dto';
+
 import { Result } from 'src/common/result/Result';
-import { IRestaurantPublicService } from 'src/restaurants/domain/ServiceInterfaces/IRestaurantPublicService';
+import { IRestaurantPublicService } from 'src/restaurants/domain/ServiceInterfaces/Discovery/IRestaurantPublicService';
 import {
   type IReviewService,
   REVIEW_SERVICE,
-} from 'src/restaurants/domain/ServiceInterfaces/IReviewService';
-import { ReviewDto } from '../Dtos/Reviews/Output/review.dto';
+} from 'src/restaurants/domain/ServiceInterfaces/Discovery/IReviewService';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
 import { In, Repository } from 'typeorm';
+import { SearchRestaurantQueryObject } from '../../Dtos/QueryObjects/SearchRestaurantsQueryObject';
+import { RestaurantPreviewDto } from '../../Dtos/Restaurant/Output/preview-restuarant.dto';
+import { RestaurantViewDto } from '../../Dtos/Restaurant/Output/view-restaurant.dto';
+import { ProductPrewievDto } from '../../Dtos/Prodcut/Output/prewiev-product.dto';
+import { ReviewDto } from '../../Dtos/Reviews/Output/review.dto';
 
 @Injectable()
 export class RestaurantPublicService implements IRestaurantPublicService {

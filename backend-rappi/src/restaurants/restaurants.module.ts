@@ -5,16 +5,20 @@ import { Restaurant } from './domain/entities/restaurant.entity';
 import { ProductAdapter } from './Infraestructure/Adapters/product-adapter';
 import { RestaurantAdapter } from './Infraestructure/Adapters/restaurant-adapter';
 import { RestaurantAddress } from './domain/entities/restaurant-addres';
-import { RestauranAddressManager } from './Application/Services/restaurantAddressManager';
-import { ProducManager } from './Application/Services/productManager';
-import { RestaurantManager } from './Application/Services/restaurantManager';
-import { RestaurantPublicService } from './Application/Services/restaurantPublicService';
-import { RESTAURANT_ADDRESS_MANAGER } from './domain/ServiceInterfaces/IRestaurantAddresManager';
-import { PRODUCT_MANAGER } from './domain/ServiceInterfaces/IProductManager';
-import { RESTAURANT_PUBLIC_SERVICE } from './domain/ServiceInterfaces/IRestaurantPublicService';
-import { RESTAURANT_MANAGER } from './domain/ServiceInterfaces/IRestaurantManager';
-import { REVIEW_SERVICE } from './domain/ServiceInterfaces/IReviewService';
-import { ReviewService } from './Application/Services/reviewService';
+import { RESTAURANT_ADDRESS_MANAGER } from './domain/ServiceInterfaces/Managment/IRestaurantAddresManager';
+import { RESTAURANT_PUBLIC_SERVICE } from './domain/ServiceInterfaces/Discovery/IRestaurantPublicService';
+import { RESTAURANT_MANAGER } from './domain/ServiceInterfaces/Managment/IRestaurantManager';
+import { REVIEW_SERVICE } from './domain/ServiceInterfaces/Discovery/IReviewService';
+import { ReviewService } from './Application/Services/Discovery/reviewService';
+import { RestauranAddressManager } from './Application/Services/Managment/restaurantAddressManager';
+import { ProducManager } from './Application/Services/Managment/productManager';
+import { RestaurantPublicService } from './Application/Services/Discovery/restaurantPublicService';
+import { RestaurantManager } from './Application/Services/Managment/restaurantManager';
+import { PRODUCT_PROVIDER } from './domain/Ports/product-provider.interface';
+import { RESTAURANT_PROVIDER } from './domain/Ports/restaurant-provider.interface';
+import { REVIEW_PROVIDER } from './domain/Ports/reviews-provider';
+import { ReviewsAdapter } from './Infraestructure/Adapters/reviews-adapter';
+import { PRODUCT_MANAGER } from './domain/ServiceInterfaces/Managment/IProductManager';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Restaurant, RestaurantAddress])],
@@ -40,8 +44,18 @@ import { ReviewService } from './Application/Services/reviewService';
       provide: RESTAURANT_MANAGER,
       useClass: RestaurantManager,
     },
-    ProductAdapter,
-    RestaurantAdapter,
+    {
+      provide: PRODUCT_PROVIDER,
+      useClass: ProductAdapter,
+    },
+    {
+      provide: RESTAURANT_PROVIDER,
+      useClass: RestaurantAdapter,
+    },
+    {
+      provide: REVIEW_PROVIDER,
+      useClass: ReviewsAdapter,
+    },
   ],
   exports: [
     REVIEW_SERVICE,
@@ -49,8 +63,9 @@ import { ReviewService } from './Application/Services/reviewService';
     PRODUCT_MANAGER,
     RESTAURANT_PUBLIC_SERVICE,
     RESTAURANT_MANAGER,
-    RestaurantAdapter,
-    ProductAdapter,
+    PRODUCT_PROVIDER,
+    RESTAURANT_PROVIDER,
+    REVIEW_PROVIDER,
   ],
 })
 export class RestaurantsModule {}

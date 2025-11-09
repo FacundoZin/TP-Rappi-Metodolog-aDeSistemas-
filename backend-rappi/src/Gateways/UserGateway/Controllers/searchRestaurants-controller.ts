@@ -12,7 +12,7 @@ import { SearchRestaurantQueryObject } from 'src/restaurants/Application/Dtos/Qu
 import {
   type IRestaurantPublicService,
   RESTAURANT_PUBLIC_SERVICE,
-} from 'src/restaurants/domain/ServiceInterfaces/IRestaurantPublicService';
+} from 'src/restaurants/domain/ServiceInterfaces/Discovery/IRestaurantPublicService';
 
 @Controller('user/restaurants')
 @UseGuards(JwtAuthGuard)

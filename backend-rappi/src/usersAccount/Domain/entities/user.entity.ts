@@ -35,9 +35,6 @@ export class User {
   @OneToMany(() => UserAddress, (address) => address.user, { cascade: true })
   addresses: UserAddress[];
 
-  @OneToMany(() => Restaurant, (restaurant) => restaurant.owner)
-  restaurants: Restaurant[];
-
   @OneToOne(() => Cart, (cart) => cart.user, { cascade: true })
   cart: Cart;
 }

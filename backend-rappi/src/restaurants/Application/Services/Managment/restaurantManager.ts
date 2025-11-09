@@ -2,11 +2,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
 import { RestaurantAddress } from 'src/restaurants/domain/entities/restaurant-addres';
-import { CreateRestaurantDto } from '../Dtos/Restaurant/Input/create-restaurant.dto';
-import { UpdateRestaurantDto } from '../Dtos/Restaurant/Input/update-restaurant.dto';
+
 import { Injectable } from '@nestjs/common';
 import { Result } from 'src/common/result/Result';
-import { IRestaurantManager } from 'src/restaurants/domain/ServiceInterfaces/IRestaurantManager';
+import { IRestaurantManager } from 'src/restaurants/domain/ServiceInterfaces/Managment/IRestaurantManager';
+import { CreateRestaurantDto } from '../../Dtos/Restaurant/Input/create-restaurant.dto';
+import { UpdateRestaurantDto } from '../../Dtos/Restaurant/Input/update-restaurant.dto';
 
 @Injectable()
 export class RestaurantManager implements IRestaurantManager {
