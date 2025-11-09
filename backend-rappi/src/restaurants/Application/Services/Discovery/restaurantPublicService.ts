@@ -14,7 +14,7 @@ import { SearchRestaurantQueryObject } from '../../Dtos/QueryObjects/SearchResta
 import { RestaurantPreviewDto } from '../../Dtos/Restaurant/Output/preview-restuarant.dto';
 import { RestaurantViewDto } from '../../Dtos/Restaurant/Output/view-restaurant.dto';
 import { ProductPrewievDto } from '../../Dtos/Prodcut/Output/prewiev-product.dto';
-import { ReviewDto } from '../../Dtos/Reviews/Output/review.dto';
+import { ReviewDto } from '../../../../common/Dtos/review.dto';
 
 @Injectable()
 export class RestaurantPublicService implements IRestaurantPublicService {

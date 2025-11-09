@@ -11,7 +11,7 @@ import { Result } from 'src/common/result/Result';
 import { CreateReviewDto } from '../../Dtos/Reviews/Input/create-review.dto';
 import { ReviewCreatedDto } from '../../Dtos/Reviews/Output/review-created.dto';
 import { reviewMapper } from '../../Mappers/review-mapper';
-import { ReviewDto } from '../../Dtos/Reviews/Output/review.dto';
+import { ReviewDto } from '../../../../common/Dtos/review.dto';
 import { ReviewSummaryDto } from '../../Dtos/Reviews/Output/review-summary.dto';
 
 @Injectable()

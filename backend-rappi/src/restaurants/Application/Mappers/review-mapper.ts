@@ -1,6 +1,6 @@
 import { Review } from 'src/restaurants/domain/entities/review.entity';
 import { ReviewCreatedDto } from '../Dtos/Reviews/Output/review-created.dto';
-import { ReviewDto } from '../Dtos/Reviews/Output/review.dto';
+import { ReviewDto } from '../../../common/Dtos/review.dto';
 
 export class reviewMapper {
   static toReviewCreatedDto(review: Review): ReviewCreatedDto {

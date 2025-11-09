@@ -16,7 +16,7 @@ import { RestaurantPublicService } from './Application/Services/Discovery/restau
 import { RestaurantManager } from './Application/Services/Managment/restaurantManager';
 import { PRODUCT_PROVIDER } from './domain/Ports/product-provider.interface';
 import { RESTAURANT_PROVIDER } from './domain/Ports/restaurant-provider.interface';
-import { REVIEW_PROVIDER } from './domain/Ports/reviews-provider';
+import { REVIEW_PROVIDER } from './domain/Ports/reviews-provider.interface';
 import { ReviewsAdapter } from './Infraestructure/Adapters/reviews-adapter';
 import { PRODUCT_MANAGER } from './domain/ServiceInterfaces/Managment/IProductManager';
 
