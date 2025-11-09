@@ -1,6 +1,6 @@
 import { Result } from 'src/common/result/Result';
-import { CreateVendorDto } from 'src/vendors/Application/dto/create-vendor.dto';
-import { LogingVendorDto } from 'src/vendors/Application/dto/login-vendor.dto';
+import { CreateVendorDto } from 'src/vendorsAccount/Application/dto/create-vendor.dto';
+import { LogingVendorDto } from 'src/vendorsAccount/Application/dto/login-vendor.dto';
 
 export interface IVendorAccountService {
   VendorRegister(createVendorDto: CreateVendorDto): Promise<Result<string>>;

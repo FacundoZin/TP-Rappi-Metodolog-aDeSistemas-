@@ -1,17 +1,18 @@
 // src/orders/Application/mappers/order.mapper.ts
 import { Order } from 'src/orders/Domain/entities/order.entity';
 import { OrderItem } from 'src/orders/Domain/entities/order-item.entity';
-import { UserVendor } from 'src/vendors/Domain/entities/vendor.entity';
 import { ProductOrderInfoDto } from 'src/restaurants/Application/Dtos/Prodcut/Output/produt-order-info.dto';
-import { VendorOrderInfoDto } from 'src/vendors/Application/dto/vendor-order-info.dto';
 import { CreateOrderDto } from '../dto/input/create-order.dto';
 import { OrderStatus } from 'src/orders/Domain/valueobjects/OrderStatus';
 import { OrderFullViewDto } from '../dto/output/order-fullview-dto';
 import { OrderItemViewDto } from '../dto/output/orderItem-view.dto';
-import { UserInfoForOrderDto } from 'src/users/Aplication/dto/user/provide-user-info.dto';
+import { UserInfoForOrderDto } from 'src/usersAccount/Aplication/dto/user/provide-user-info.dto';
+import { VendorOrderInfoDto } from 'src/vendorsAccount/Application/dto/vendor-order-info.dto';
+import { UserVendor } from 'src/vendorsAccount/Domain/entities/vendor.entity';
 
 export class OrderMapper {
   static fromCreateDto(
+    idUser: string,
     dto: CreateOrderDto,
     userInfo: UserInfoForOrderDto,
     restaurantInfo: any,
@@ -37,7 +38,7 @@ export class OrderMapper {
       restaurantId: dto.restaurantId,
       restaurantName: restaurantInfo.RestaurantName,
       restaurantAddress: restaurantInfo.RestaurantAddress,
-      userId: dto.userId,
+      userId: idUser,
       userName: userInfo.username,
       userAddress: userInfo.useraddrres,
       userEmail: userInfo.useremail,

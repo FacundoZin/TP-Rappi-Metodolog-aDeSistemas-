@@ -3,13 +3,13 @@ import { CreateVendorDto } from '../dto/create-vendor.dto';
 import { Result } from 'src/common/result/Result';
 import { GoogleAuthAdapter } from 'src/auth/Adapter/auth-adapter';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserVendor } from 'src/vendors/Domain/entities/vendor.entity';
 import { Repository } from 'typeorm';
 import { AuthVendorService } from 'src/auth/services/auth-vendor-service';
 import { UserRole } from 'src/common/enum/user-role';
 import { CreateVendorTokenDto } from 'src/auth/dto/input/create-vendor-token.dto';
-import { IVendorAccountService } from 'src/vendors/Domain/serviceInterface/IVendorAccountService';
 import { LogingVendorDto } from '../dto/login-vendor.dto';
+import { IVendorAccountService } from 'src/vendorsAccount/Domain/serviceInterface/IVendorAccountService';
+import { UserVendor } from 'src/vendorsAccount/Domain/entities/vendor.entity';
 
 @Injectable()
 export class VendorAccountService implements IVendorAccountService {

@@ -1,7 +1,5 @@
-import {
-  Restaurant,
-  RestaurantCategory,
-} from 'src/restaurants/domain/entities/restaurant.entity';
+import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
+import { RestaurantCategory } from 'src/restaurants/domain/Enums/Restaurant.category';
 
 export class UpdateRestaurantDto {
   name: string;

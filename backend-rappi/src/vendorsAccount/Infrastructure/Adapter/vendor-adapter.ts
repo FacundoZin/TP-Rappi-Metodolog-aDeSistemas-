@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { IVendorProvider } from 'src/vendors/Domain/port/IVendorProvider';
-import { VendorOrderInfoDto } from 'src/vendors/Application/dto/vendor-order-info.dto';
+import { VendorOrderInfoDto } from 'src/vendorsAccount/Application/dto/vendor-order-info.dto';
+import { IVendorProvider } from 'src/vendorsAccount/Domain/port/IVendorProvider';
 
 Injectable();
 export class VendorAdapter implements IVendorProvider {

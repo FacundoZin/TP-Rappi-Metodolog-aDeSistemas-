@@ -58,6 +58,7 @@ export class UserOrderService implements IUserOrderService {
       return Result.fail('email del restaurante no encontrado', 404);
 
     const order = OrderMapper.fromCreateDto(
+      userId,
       dto,
       userInfo.data!,
       restaurantInfo,
