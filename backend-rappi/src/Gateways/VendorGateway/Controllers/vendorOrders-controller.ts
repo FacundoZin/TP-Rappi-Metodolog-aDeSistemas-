@@ -74,4 +74,19 @@ export class VendorOrdersController {
       message: `Status de orden ${orderId} actualizado a ${newStatus}`,
     };
   }
+
+  @Get(':restaurantId/sales-report')
+  @HttpCode(200)
+  async getMonthlySalesReport(@Param('restaurantId') restaurantId: string) {
+    const result =
+      await this.vendorOrderService.GetMonthlySalesReport(restaurantId);
+
+    if (!result.success) {
+      throw new HttpException(result.message!, result.errorcode!);
+    }
+
+    return {
+      data: result.data,
+    };
+  }
 }

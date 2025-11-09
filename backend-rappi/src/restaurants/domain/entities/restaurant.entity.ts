@@ -9,28 +9,10 @@ import {
 
 import { Product } from './product.entity';
 import { RestaurantAddress } from './restaurant-addres';
-import { User } from 'src/usersAccount/Domain/entities/user.entity';
 import { Review } from './review.entity';
 import { UserVendor } from 'src/vendorsAccount/Domain/entities/vendor.entity';
 import { RestaurantStatus } from '../Enums/Restaurant.status';
-
-export enum RestaurantCategory {
-  PIZZERIA = 'PIZZERIA',
-  HAMBURGUESERIA = 'HAMBURGUESERIA',
-  PARRILLA = 'PARRILLA',
-  VEGETARIANO = 'VEGETARIANO',
-  VEGANO = 'VEGANO',
-  SUSHI = 'SUSHI',
-  ARABE = 'ARABE',
-  CHINO = 'CHINO',
-  MEXICANO = 'MEXICANO',
-  PERUANO = 'PERUANO',
-  CAFETERIA = 'CAFETERIA',
-  PANADERIA = 'PANADERIA',
-  POSTRES = 'POSTRES',
-  RAPIDA = 'RAPIDA',
-  GOURMET = 'GOURMET',
-}
+import { RestaurantCategory } from '../Enums/Restaurant.category';
 
 @Entity({ name: 'restaurants' })
 export class Restaurant {
@@ -53,7 +35,7 @@ export class Restaurant {
   @ManyToOne(() => UserVendor, (vendor) => vendor.restaurants, {
     onDelete: 'CASCADE',
   })
-  owner: User;
+  owner: UserVendor;
 
   @OneToMany(() => Product, (product) => product.restaurant)
   products: Product[];

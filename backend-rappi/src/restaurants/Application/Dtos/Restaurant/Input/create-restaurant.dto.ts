@@ -1,10 +1,8 @@
 import { IsString, IsNotEmpty, IsEnum } from 'class-validator';
 import { RestaurantAddress } from 'src/restaurants/domain/entities/restaurant-addres';
-import {
-  Restaurant,
-  RestaurantCategory,
-} from 'src/restaurants/domain/entities/restaurant.entity';
-import { User } from 'src/users/Domain/entities/user.entity';
+import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
+import { RestaurantCategory } from 'src/restaurants/domain/Enums/Restaurant.category';
+import { UserVendor } from 'src/vendorsAccount/Domain/entities/vendor.entity';
 
 export class CreateRestaurantDto {
   @IsString()
@@ -33,7 +31,7 @@ export class CreateRestaurantDto {
     restaurant.description = this.description;
     restaurant.category = this.category;
     // Relaciones
-    restaurant.owner = { id: this.ownerId } as User;
+    restaurant.owner = { id: this.ownerId } as UserVendor;
     restaurant.address = addres;
     return restaurant;
   }

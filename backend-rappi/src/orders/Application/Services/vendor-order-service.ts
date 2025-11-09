@@ -2,13 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Order } from 'src/orders/Domain/entities/order.entity';
 import { EmailServie } from 'src/orders/Infraestructure/EmailService/email-service';
-import { In, Repository } from 'typeorm';
+import { Between, In, Repository } from 'typeorm';
 import { OrderPrewievDto } from '../dto/output/order-preview-dto';
 import { OrderStatus } from 'src/orders/Domain/valueobjects/OrderStatus';
 import { OrderFullViewDto } from '../dto/output/order-fullview-dto';
 import { OrderMapper } from '../mappers/order-mapper';
 import { Result } from 'src/common/result/Result';
 import { IVendorOrderService } from 'src/orders/Domain/ServiceInterfaces/IVendorOrderService';
+import { SalesReportDto } from '../dto/output/sales-report-dto';
+import { startOfMonth, endOfMonth, subMonths } from 'date-fns';
 
 @Injectable()
 export class VendorOrderService implements IVendorOrderService {
@@ -110,6 +112,54 @@ export class VendorOrderService implements IVendorOrderService {
     } catch (error) {
       console.error('Error al cambiar el estado de la orden:', error);
       return Result.fail('Error al actualizar el estado de la orden', 500);
+    }
+  }
+
+  async GetMonthlySalesReport(
+    restaurantId: string,
+  ): Promise<Result<SalesReportDto>> {
+    try {
+      const now = new Date();
+      const firstDay = startOfMonth(subMonths(now, 1));
+      const lastDay = endOfMonth(subMonths(now, 1));
+
+      const orders = await this.orderRepo.find({
+        where: {
+          restaurantId,
+          status: In([OrderStatus.DELIVERED, OrderStatus.DISPATCHED]),
+          orderDate: Between(firstDay, lastDay),
+        },
+      });
+
+      if (orders.length === 0) {
+        return Result.ok({
+          totalSales: 0,
+          totalOrders: 0,
+          avgTicket: 0,
+          startDate: firstDay,
+          endDate: lastDay,
+        });
+      }
+
+      const totalSales = orders.reduce(
+        (sum, o) => sum + Number(o.totalAmount),
+        0,
+      );
+      const totalOrders = orders.length;
+      const avgTicket = totalSales / totalOrders;
+
+      const report: SalesReportDto = {
+        totalSales: Number(totalSales.toFixed(2)),
+        totalOrders,
+        avgTicket: Number(avgTicket.toFixed(2)),
+        startDate: firstDay,
+        endDate: lastDay,
+      };
+
+      return Result.ok(report);
+    } catch (error) {
+      console.error('Error generando reporte de ventas:', error);
+      return Result.fail('Error al generar reporte de ventas', 500);
     }
   }
 }

@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   HttpException,
   Inject,
@@ -54,5 +55,17 @@ export class RestaurantManagerController {
     return {
       message: `Restaurante ${restaurantId} actualizado. Filas afectadas: ${result.data}`,
     };
+  }
+
+  @Get(':Id')
+  @HttpCode(200)
+  async viewMyRestaurant(@Param('Id') restaurantId: string) {
+    const result = await this.restaurantManager.viewMyRestaurant(restaurantId);
+
+    if (!result.success) {
+      throw new HttpException(result.message!, result.errorcode!);
+    }
+
+    return result.data;
   }
 }

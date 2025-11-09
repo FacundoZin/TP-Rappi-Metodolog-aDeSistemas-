@@ -8,6 +8,8 @@ import { Result } from 'src/common/result/Result';
 import { IRestaurantManager } from 'src/restaurants/domain/ServiceInterfaces/Managment/IRestaurantManager';
 import { CreateRestaurantDto } from '../../Dtos/Restaurant/Input/create-restaurant.dto';
 import { UpdateRestaurantDto } from '../../Dtos/Restaurant/Input/update-restaurant.dto';
+import { RestaurantInfoDto } from '../../Dtos/Restaurant/Output/restaurant-info.dto';
+import { RestaurantMapper } from '../../Mappers/restaurant-mapper';
 
 @Injectable()
 export class RestaurantManager implements IRestaurantManager {
@@ -62,5 +64,20 @@ export class RestaurantManager implements IRestaurantManager {
       );
 
     return Result.ok(responseDB.affected);
+  }
+
+  async viewMyRestaurant(
+    idRestaurant: string,
+  ): Promise<Result<RestaurantInfoDto>> {
+    const restaurant = await this._RestaurantRepo.findOne({
+      where: { id: idRestaurant },
+      relations: ['address'],
+    });
+
+    if (!restaurant) {
+      return Result.fail('Restaurante no encontrado', 404);
+    }
+
+    return Result.ok(RestaurantMapper.ToRestaurantInfo(restaurant));
   }
 }
