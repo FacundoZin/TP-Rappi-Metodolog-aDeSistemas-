@@ -5,17 +5,16 @@ import {
   Inject,
   Param,
   Query,
-  UseGuards,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
+import { ClientOnly } from 'src/auth/Decorators/decorators';
 import { SearchRestaurantQueryObject } from 'src/restaurants/Application/Dtos/QueryObjects/SearchRestaurantsQueryObject';
 import {
   type IRestaurantPublicService,
   RESTAURANT_PUBLIC_SERVICE,
 } from 'src/restaurants/domain/ServiceInterfaces/Discovery/IRestaurantPublicService';
 
+@ClientOnly()
 @Controller('user/restaurants')
-@UseGuards(JwtAuthGuard)
 export class searchRestaurantsController {
   constructor(
     @Inject(RESTAURANT_PUBLIC_SERVICE)

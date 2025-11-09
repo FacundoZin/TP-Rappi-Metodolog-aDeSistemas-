@@ -8,11 +8,11 @@ import {
   HttpException,
   Inject,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
+import { ClientOnly } from 'src/auth/Decorators/decorators';
 import { type IUserFavoritesService } from 'src/usersAccount/Domain/serviceInterfaces/IUser-favorite-service';
 
+@ClientOnly()
 @Controller('user/favorites')
-@UseGuards(JwtAuthGuard)
 export class UserFavoritesController {
   constructor(
     @Inject()

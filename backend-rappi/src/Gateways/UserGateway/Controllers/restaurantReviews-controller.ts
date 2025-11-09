@@ -9,6 +9,7 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
+import { ClientOnly } from 'src/auth/Decorators/decorators';
 import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
 import { type RequestWithUser } from 'src/common/HttpRequestWithUser/IRequestWithUser';
 import { CreateReviewDto } from 'src/restaurants/Application/Dtos/Reviews/Input/create-review.dto';
@@ -21,8 +22,8 @@ import {
   REVIEW_SERVICE,
 } from 'src/restaurants/domain/ServiceInterfaces/Discovery/IReviewService';
 
+@ClientOnly()
 @Controller('user/restaurants/:id/reviews')
-@UseGuards(JwtAuthGuard)
 export class RestaurantReviewsController {
   constructor(
     @Inject(RESTAURANT_PUBLIC_SERVICE)

@@ -6,15 +6,18 @@ import {
   HttpException,
   Inject,
   UseGuards,
+  UnauthorizedException,
+  ForbiddenException,
+  Req,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
+import { AdminOnly } from 'src/auth/Decorators/decorators';
 import {
   BACKOFFICE_RESTAURANT_MODERATION_SERVICE,
   type IBackofficeRestaurantModerationService,
 } from 'src/backOffice/Domain/IBackOfficeRestarantModerationService';
 
+@AdminOnly()
 @Controller('admin/restaurants/moderation')
-@UseGuards(JwtAuthGuard)
 export class AdminRestaurantModerationController {
   constructor(
     @Inject(BACKOFFICE_RESTAURANT_MODERATION_SERVICE)
@@ -22,7 +25,8 @@ export class AdminRestaurantModerationController {
   ) {}
 
   @Get('pending')
-  async listPendingRestaurants() {
+  async listPendingRestaurants(@Req() req) {
+    this.verifyAdminAccess(req);
     const result = await this.moderationService.listPendingRestaurants();
 
     if (!result.success) {
@@ -33,7 +37,11 @@ export class AdminRestaurantModerationController {
   }
 
   @Patch(':restaurantId/approve')
-  async approveRestaurant(@Param('restaurantId') restaurantId: string) {
+  async approveRestaurant(
+    @Req() req,
+    @Param('restaurantId') restaurantId: string,
+  ) {
+    this.verifyAdminAccess(req);
     const result = await this.moderationService.approveRestaurant(restaurantId);
 
     if (!result.success) {
@@ -44,7 +52,11 @@ export class AdminRestaurantModerationController {
   }
 
   @Patch(':restaurantId/reject')
-  async rejectRestaurant(@Param('restaurantId') restaurantId: string) {
+  async rejectRestaurant(
+    @Req() req,
+    @Param('restaurantId') restaurantId: string,
+  ) {
+    this.verifyAdminAccess(req);
     const result = await this.moderationService.rejectRestaurant(restaurantId);
 
     if (!result.success) {
@@ -52,5 +64,17 @@ export class AdminRestaurantModerationController {
     }
 
     return { message: 'Restaurante rechazado correctamente' };
+  }
+
+  private verifyAdminAccess(req: any) {
+    if (!req.user) {
+      throw new UnauthorizedException('Usuario no autenticado');
+    }
+
+    if (req.user.role !== 'admin') {
+      throw new ForbiddenException(
+        'Acceso denegado: se requiere rol de administrador',
+      );
+    }
   }
 }

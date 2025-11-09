@@ -8,9 +8,8 @@ import {
   Param,
   Post,
   Req,
-  UseGuards,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
+import { ClientOnly } from 'src/auth/Decorators/decorators';
 import type { RequestWithUser } from 'src/common/HttpRequestWithUser/IRequestWithUser';
 import { CreateOrderDto } from 'src/orders/Application/dto/input/create-order.dto';
 import {
@@ -18,8 +17,8 @@ import {
   USER_ORDER_SERVICE,
 } from 'src/orders/Domain/ServiceInterfaces/IUserOrderService';
 
+@ClientOnly()
 @Controller('user/orders')
-@UseGuards(JwtAuthGuard)
 export class UserOrdersController {
   constructor(
     @Inject(USER_ORDER_SERVICE)

@@ -7,9 +7,8 @@ import {
   Param,
   Post,
   Put,
-  UseGuards,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
+import { VendorOnly } from 'src/auth/Decorators/decorators';
 import { CreateRestaurantDto } from 'src/restaurants/Application/Dtos/Restaurant/Input/create-restaurant.dto';
 import { UpdateRestaurantDto } from 'src/restaurants/Application/Dtos/Restaurant/Input/update-restaurant.dto';
 import {
@@ -17,8 +16,8 @@ import {
   RESTAURANT_MANAGER,
 } from 'src/restaurants/domain/ServiceInterfaces/Managment/IRestaurantManager';
 
+@VendorOnly()
 @Controller('vendor/restaurant')
-@UseGuards(JwtAuthGuard)
 export class RestaurantManagerController {
   constructor(
     @Inject(RESTAURANT_MANAGER)

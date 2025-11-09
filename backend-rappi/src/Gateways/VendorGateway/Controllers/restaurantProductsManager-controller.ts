@@ -7,20 +7,18 @@ import {
   Patch,
   Post,
   Put,
-  UseGuards,
   Inject,
   HttpException,
-  HttpStatus,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
-import {
-  PRODUCT_MANAGER,
-  type IProductManager,
-} from 'src/restaurants/domain/ServiceInterfaces/IProductManager';
+import { VendorOnly } from 'src/auth/Decorators/decorators';
 import { CreateProductDto } from 'src/restaurants/Application/Dtos/Prodcut/Input/create-product.dto';
 import { UpdateProductDto } from 'src/restaurants/Application/Dtos/Prodcut/Input/update-product.dto';
+import {
+  type IProductManager,
+  PRODUCT_MANAGER,
+} from 'src/restaurants/domain/ServiceInterfaces/Managment/IProductManager';
 
-@UseGuards(JwtAuthGuard)
+@VendorOnly()
 @Controller('vendor/restaurant/products')
 export class RestaurantProductsManagerController {
   constructor(

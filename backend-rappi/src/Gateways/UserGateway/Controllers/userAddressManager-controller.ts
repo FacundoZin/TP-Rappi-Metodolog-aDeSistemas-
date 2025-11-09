@@ -8,9 +8,8 @@ import {
   Param,
   Post,
   Req,
-  UseGuards,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
+import { ClientOnly } from 'src/auth/Decorators/decorators';
 import type { RequestWithUser } from 'src/common/HttpRequestWithUser/IRequestWithUser';
 import { CreateUserAddressDto } from 'src/usersAccount/Aplication/dto/addres/create-address.dto';
 import {
@@ -18,8 +17,8 @@ import {
   USERS_ADDRESS_SERVICE,
 } from 'src/usersAccount/Domain/serviceInterfaces/IUser-addres-service';
 
+@ClientOnly()
 @Controller('user/address')
-@UseGuards(JwtAuthGuard)
 export class UserAddresManagerController {
   constructor(
     @Inject(USERS_ADDRESS_SERVICE)

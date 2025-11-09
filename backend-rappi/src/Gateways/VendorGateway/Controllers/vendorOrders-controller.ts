@@ -8,17 +8,16 @@ import {
   Param,
   Patch,
   Query,
-  UseGuards,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
+import { ClientOnly } from 'src/auth/Decorators/decorators';
 import {
   type IVendorOrderService,
   VENDOR_ORDER_SERVICE,
 } from 'src/orders/Domain/ServiceInterfaces/IVendorOrderService';
 import { OrderStatus } from 'src/orders/Domain/valueobjects/OrderStatus';
 
+@ClientOnly()
 @Controller('vendor/orders')
-@UseGuards(JwtAuthGuard)
 export class VendorOrdersController {
   constructor(
     @Inject(VENDOR_ORDER_SERVICE)

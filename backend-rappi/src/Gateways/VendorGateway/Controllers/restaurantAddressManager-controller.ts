@@ -8,9 +8,8 @@ import {
   Param,
   Post,
   Put,
-  UseGuards,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
+import { VendorOnly } from 'src/auth/Decorators/decorators';
 import { CreateRestaurantAddressDto } from 'src/restaurants/Application/Dtos/Addres/Input/create.restaurantAddress.dto';
 import { UpdateRestaurantAddressDto } from 'src/restaurants/Application/Dtos/Addres/Input/update-restaurantAddress.dto';
 import {
@@ -18,8 +17,8 @@ import {
   RESTAURANT_ADDRESS_MANAGER,
 } from 'src/restaurants/domain/ServiceInterfaces/Managment/IRestaurantAddresManager';
 
+@VendorOnly()
 @Controller('vendor/restaurant/addres')
-@UseGuards(JwtAuthGuard)
 export class restaurantAddressManagerController {
   constructor(
     @Inject(RESTAURANT_ADDRESS_MANAGER)

@@ -7,14 +7,14 @@ import {
   Inject,
   UseGuards,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
+import { AdminOnly } from 'src/auth/Decorators/decorators';
 import {
   BACKOFFICE_RESTAURANREVIEW_MODERATION_SERVICE,
   type IBackofficeRestaurantReviewModerationService,
 } from 'src/backOffice/Domain/IBackOfficeReviewsModerationService';
 
+@AdminOnly()
 @Controller('admin/reviews/moderation')
-@UseGuards(JwtAuthGuard)
 export class AdminReviewModerationController {
   constructor(
     @Inject(BACKOFFICE_RESTAURANREVIEW_MODERATION_SERVICE)
