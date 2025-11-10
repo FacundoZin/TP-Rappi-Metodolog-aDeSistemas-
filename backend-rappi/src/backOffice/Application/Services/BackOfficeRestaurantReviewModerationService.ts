@@ -1,7 +1,6 @@
 import { ReviewDto } from 'src/common/Dtos/review.dto';
 import { Result } from 'src/common/result/Result';
-import { IBackofficeRestaurantReviewModerationService } from '../Domain/IBackOfficeReviewsModerationService';
-import { Inject } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import {
   type IRestaurantReviewModeration,
   RESTAURANT_REVIEW_MODERATION,
@@ -10,6 +9,7 @@ import {
   type IReviewsProvider,
   REVIEW_PROVIDER,
 } from 'src/restaurants/domain/Ports/reviews-provider.interface';
+import { IBackofficeRestaurantReviewModerationService } from 'src/backOffice/Domain/serviceInterfaces/IBackOfficeReviewsModerationService';
 
 export class BackOfficeRestaurantReviewModerationService
   implements IBackofficeRestaurantReviewModerationService

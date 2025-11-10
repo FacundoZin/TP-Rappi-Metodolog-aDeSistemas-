@@ -7,7 +7,6 @@ import {
 } from 'typeorm';
 import { UserAddress } from './user-address.entity';
 import { Cart } from '../../../carrito/Domain/entities/cart.entity';
-import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
 import { UserRole } from 'src/common/enum/user-role';
 
 @Entity({ name: 'users' })

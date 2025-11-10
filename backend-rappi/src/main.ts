@@ -14,12 +14,11 @@ async function bootstrap() {
     }),
   );
 
-  // 1. Configurar Swagger
   const config = new DocumentBuilder()
-    .setTitle('Rappi-Clone API') // Título de tu proyecto
+    .setTitle('Rappi-Clone API')
     .setDescription('Documentación de la API para el proyecto Rappi-Clone.')
     .setVersion('1.0')
-    .addBearerAuth() // Si usas JWT, esto añade el campo para el token
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

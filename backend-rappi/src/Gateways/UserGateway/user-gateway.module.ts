@@ -9,6 +9,9 @@ import { UserAccountController } from './Controllers/userAccount-controller';
 import { UserAddresManagerController } from './Controllers/userAddressManager-controller';
 import { UsersAccountModule } from 'src/usersAccount/userAccount.module';
 import { UserFavoritesController } from './Controllers/favorites-restaurants-controller';
+import { UserRewievsController } from './Controllers/user-reviews-controller';
+import { UserClaimsController } from './Controllers/user-claims-controller';
+import { VendorClaimsController } from '../VendorGateway/Controllers/vendor-claims-controller';
 
 @Module({
   imports: [UsersAccountModule, CarritoModule, OrdersModule, RestaurantsModule],
@@ -19,6 +22,9 @@ import { UserFavoritesController } from './Controllers/favorites-restaurants-con
     UserCartController,
     UserOrdersController,
     searchRestaurantsController,
+    UserRewievsController,
+    UserClaimsController,
+    VendorClaimsController,
   ],
 })
 export class UserGatewayModule {}

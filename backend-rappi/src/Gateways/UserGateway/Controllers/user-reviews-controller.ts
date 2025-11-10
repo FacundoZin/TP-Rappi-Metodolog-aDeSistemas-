@@ -23,7 +23,7 @@ import {
 
 @ClientOnly()
 @Controller('user/restaurants/:id/reviews')
-export class RestaurantReviewsController {
+export class UserRewievsController {
   constructor(
     @Inject(RESTAURANT_PUBLIC_SERVICE)
     private readonly restaurantPublicService: IRestaurantPublicService,

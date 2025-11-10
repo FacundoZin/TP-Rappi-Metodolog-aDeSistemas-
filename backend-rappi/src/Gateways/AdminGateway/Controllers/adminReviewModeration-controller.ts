@@ -11,7 +11,7 @@ import { AdminOnly } from 'src/auth/Decorators/decorators';
 import {
   BACKOFFICE_RESTAURANREVIEW_MODERATION_SERVICE,
   type IBackofficeRestaurantReviewModerationService,
-} from 'src/backOffice/Domain/IBackOfficeReviewsModerationService';
+} from 'src/backOffice/Domain/serviceInterfaces/IBackOfficeReviewsModerationService';
 
 @AdminOnly()
 @Controller('admin/reviews/moderation')

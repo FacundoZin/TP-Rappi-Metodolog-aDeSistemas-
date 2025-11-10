@@ -1,6 +1,5 @@
 import { RestaurantBackofficeViewDto } from 'src/common/Dtos/restaurant-Backoffice-view.dto';
 import { Result } from 'src/common/result/Result';
-import { IBackofficeRestaurantModerationService } from '../Domain/IBackOfficeRestarantModerationService';
 import { Inject } from '@nestjs/common';
 import {
   type IRestaurantModeration,
@@ -10,6 +9,7 @@ import {
   RESTAURANT_PROVIDER,
   type IRestaurantProvider,
 } from 'src/restaurants/domain/Ports/restaurant-provider.interface';
+import { IBackofficeRestaurantModerationService } from 'src/backOffice/Domain/serviceInterfaces/IBackOfficeRestarantModerationService';
 
 export class BackOfficeRestaurantModerationService
   implements IBackofficeRestaurantModerationService

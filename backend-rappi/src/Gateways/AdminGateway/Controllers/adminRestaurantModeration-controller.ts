@@ -14,7 +14,7 @@ import { AdminOnly } from 'src/auth/Decorators/decorators';
 import {
   BACKOFFICE_RESTAURANT_MODERATION_SERVICE,
   type IBackofficeRestaurantModerationService,
-} from 'src/backOffice/Domain/IBackOfficeRestarantModerationService';
+} from 'src/backOffice/Domain/serviceInterfaces/IBackOfficeRestarantModerationService';
 
 @AdminOnly()
 @Controller('admin/restaurants/moderation')

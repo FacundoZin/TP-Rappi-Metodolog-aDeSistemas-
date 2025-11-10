@@ -10,6 +10,8 @@ import { VendorsAccountModule } from 'src/vendorsAccount/vendors.module';
 import { EmailServie } from './Infraestructure/EmailService/email-service';
 import { UsersAccountModule } from 'src/usersAccount/userAccount.module';
 import { EMAIL_SERVICE } from './Domain/ServiceInterfaces/IEmailService';
+import { ORDER_ADAPTER } from './Domain/ports/IOrderProvider';
+import { orderAdapter } from './Infraestructure/Adapter/orderAdapter';
 
 @Module({
   imports: [
@@ -31,7 +33,11 @@ import { EMAIL_SERVICE } from './Domain/ServiceInterfaces/IEmailService';
       provide: EMAIL_SERVICE,
       useClass: EmailServie,
     },
+    {
+      provide: ORDER_ADAPTER,
+      useClass: orderAdapter,
+    },
   ],
-  exports: [VENDOR_ORDER_SERVICE, USER_ORDER_SERVICE],
+  exports: [VENDOR_ORDER_SERVICE, USER_ORDER_SERVICE, ORDER_ADAPTER],
 })
 export class OrdersModule {}
