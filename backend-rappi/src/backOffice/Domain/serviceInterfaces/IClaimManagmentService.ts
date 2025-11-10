@@ -1,10 +1,11 @@
 import { Result } from 'src/common/result/Result';
-import { Claim } from '../Entities/claim.entity';
 import { ClaimStatus } from '../Enum/claim-status';
+import { ClaimInfo } from 'src/backOffice/Application/Dtos/claim-info.dto';
+import { ClaimPreview } from 'src/backOffice/Application/Dtos/claim-preview.dto';
 
 export interface IClaimManagmentService {
-  getAllClaims(): Promise<Result<Claim[]>>;
-  getClaimById(claimId: string): Promise<Result<Claim>>;
+  getAllClaims(): Promise<Result<ClaimPreview[]>>;
+  getClaimById(claimId: string): Promise<Result<ClaimInfo>>;
   updateClaimStatus(
     claimId: string,
     status: ClaimStatus,

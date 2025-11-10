@@ -5,9 +5,7 @@ import {
   ManyToOne,
   CreateDateColumn,
 } from 'typeorm';
-import { Order } from 'src/orders/Domain/entities/order.entity';
-import { User } from 'src/usersAccount/Domain/entities/user.entity';
-import { UserVendor } from 'src/vendorsAccount/Domain/entities/vendor.entity';
+
 import { ClaimStatus } from '../Enum/claim-status';
 
 @Entity({ name: 'claims' })

@@ -1,6 +1,8 @@
 import { Claim } from 'src/backOffice/Domain/Entities/claim.entity';
 import { claimCreated } from '../Dtos/claim-created.dto';
 import { ClaimStatus } from 'src/backOffice/Domain/Enum/claim-status';
+import { ClaimPreview } from '../Dtos/claim-preview.dto';
+import { ClaimInfo } from '../Dtos/claim-info.dto';
 
 export class ClaimsMapper {
   static toEntity(params: {
@@ -32,6 +34,27 @@ export class ClaimsMapper {
       idClaim: claim.id,
       claimStatus: claim.status,
       createdAt: claim.createdAt,
+    };
+  }
+
+  static toPreview(entity: Claim): ClaimPreview {
+    return {
+      id: entity.id,
+      description: entity.description,
+      status: entity.status,
+      createdAt: entity.createdAt,
+    };
+  }
+
+  static toInfo(entity: Claim): ClaimInfo {
+    return {
+      id: entity.id,
+      description: entity.description,
+      orderId: entity.orderId,
+      claimerName: entity.claimerName,
+      contactEmail: entity.contactEmail,
+      createdAt: entity.createdAt,
+      status: entity.status,
     };
   }
 }

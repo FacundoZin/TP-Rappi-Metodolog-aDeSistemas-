@@ -5,10 +5,6 @@ import {
   Param,
   HttpException,
   Inject,
-  UseGuards,
-  UnauthorizedException,
-  ForbiddenException,
-  Req,
 } from '@nestjs/common';
 import { AdminOnly } from 'src/auth/Decorators/decorators';
 import {
@@ -25,8 +21,7 @@ export class AdminRestaurantModerationController {
   ) {}
 
   @Get('pending')
-  async listPendingRestaurants(@Req() req) {
-    this.verifyAdminAccess(req);
+  async listPendingRestaurants() {
     const result = await this.moderationService.listPendingRestaurants();
 
     if (!result.success) {
@@ -37,11 +32,7 @@ export class AdminRestaurantModerationController {
   }
 
   @Patch(':restaurantId/approve')
-  async approveRestaurant(
-    @Req() req,
-    @Param('restaurantId') restaurantId: string,
-  ) {
-    this.verifyAdminAccess(req);
+  async approveRestaurant(@Param('restaurantId') restaurantId: string) {
     const result = await this.moderationService.approveRestaurant(restaurantId);
 
     if (!result.success) {
@@ -52,11 +43,7 @@ export class AdminRestaurantModerationController {
   }
 
   @Patch(':restaurantId/reject')
-  async rejectRestaurant(
-    @Req() req,
-    @Param('restaurantId') restaurantId: string,
-  ) {
-    this.verifyAdminAccess(req);
+  async rejectRestaurant(@Param('restaurantId') restaurantId: string) {
     const result = await this.moderationService.rejectRestaurant(restaurantId);
 
     if (!result.success) {
@@ -64,17 +51,5 @@ export class AdminRestaurantModerationController {
     }
 
     return { message: 'Restaurante rechazado correctamente' };
-  }
-
-  private verifyAdminAccess(req: any) {
-    if (!req.user) {
-      throw new UnauthorizedException('Usuario no autenticado');
-    }
-
-    if (req.user.role !== 'admin') {
-      throw new ForbiddenException(
-        'Acceso denegado: se requiere rol de administrador',
-      );
-    }
   }
 }
