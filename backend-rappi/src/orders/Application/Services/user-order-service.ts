@@ -18,7 +18,7 @@ import {
   RESTAURANT_PROVIDER,
 } from 'src/restaurants/domain/Ports/restaurant-provider.interface';
 import {
-  type IUserProviderInterface,
+  type IUserProvider,
   USER_PROVIDER,
 } from 'src/usersAccount/Domain/Ports/user-provider-interface';
 import {
@@ -42,7 +42,7 @@ export class UserOrderService implements IUserOrderService {
     @Inject(VENDOR_PROVIDER)
     private readonly vendorAdapter: IVendorProvider,
     @Inject(USER_PROVIDER)
-    private readonly userAdapter: IUserProviderInterface,
+    private readonly userAdapter: IUserProvider,
     @Inject(EMAIL_SERVICE)
     private readonly emailService: IEmailService,
   ) {}
