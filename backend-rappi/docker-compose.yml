@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  # Nombre del servicio
+  postgres:
+    # Imagen oficial de Docker Hub
+    image: postgres:16-alpine
+    # Mapea el puerto 5432 del contenedor al puerto 5432 de tu máquina.
+    ports:
+      - '5432:5432'
+    # Variables de entorno para la configuración de la DB
+    environment:
+      # Nombre de la base de datos que creará
+      POSTGRES_DB: nest_db
+      # Usuario de la base de datos
+      POSTGRES_USER: nest_user
+      # Contraseña del usuario
+      POSTGRES_PASSWORD: nest_password
+    # Reinicia si falla
+    restart: always
