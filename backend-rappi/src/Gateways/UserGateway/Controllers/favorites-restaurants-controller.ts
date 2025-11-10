@@ -2,20 +2,22 @@ import {
   Controller,
   Post,
   Delete,
-  UseGuards,
   Req,
   Param,
   HttpException,
   Inject,
 } from '@nestjs/common';
 import { ClientOnly } from 'src/auth/Decorators/decorators';
-import { type IUserFavoritesService } from 'src/usersAccount/Domain/serviceInterfaces/IUser-favorite-service';
+import {
+  USERS_FAVORITES_SERVICE,
+  type IUserFavoritesService,
+} from 'src/usersAccount/Domain/serviceInterfaces/IUser-favorite-service';
 
 @ClientOnly()
 @Controller('user/favorites')
 export class UserFavoritesController {
   constructor(
-    @Inject()
+    @Inject(USERS_FAVORITES_SERVICE)
     private readonly favoritesService: IUserFavoritesService,
   ) {}
 

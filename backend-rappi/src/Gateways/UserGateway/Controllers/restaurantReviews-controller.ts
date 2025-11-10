@@ -10,7 +10,6 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ClientOnly } from 'src/auth/Decorators/decorators';
-import { JwtAuthGuard } from 'src/auth/Guards/jwt-auth.guard';
 import { type RequestWithUser } from 'src/common/HttpRequestWithUser/IRequestWithUser';
 import { CreateReviewDto } from 'src/restaurants/Application/Dtos/Reviews/Input/create-review.dto';
 import {
