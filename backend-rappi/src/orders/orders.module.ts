@@ -7,11 +7,15 @@ import { Order } from './Domain/entities/order.entity';
 import { USER_ORDER_SERVICE } from './Domain/ServiceInterfaces/IUserOrderService';
 import { VENDOR_ORDER_SERVICE } from './Domain/ServiceInterfaces/IVendorOrderService';
 import { VendorsAccountModule } from 'src/vendorsAccount/vendors.module';
+import { EmailServie } from './Infraestructure/EmailService/email-service';
+import { UsersAccountModule } from 'src/usersAccount/userAccount.module';
+import { EMAIL_SERVICE } from './Domain/ServiceInterfaces/IEmailService';
 
 @Module({
   imports: [
     RestaurantsModule,
     VendorsAccountModule,
+    UsersAccountModule,
     TypeOrmModule.forFeature([Order]),
   ],
   providers: [
@@ -22,6 +26,10 @@ import { VendorsAccountModule } from 'src/vendorsAccount/vendors.module';
     {
       provide: USER_ORDER_SERVICE,
       useClass: UserOrderService,
+    },
+    {
+      provide: EMAIL_SERVICE,
+      useClass: EmailServie,
     },
   ],
   exports: [VENDOR_ORDER_SERVICE, USER_ORDER_SERVICE],

@@ -1,7 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Order } from 'src/orders/Domain/entities/order.entity';
-import { EmailServie } from 'src/orders/Infraestructure/EmailService/email-service';
 import { Between, In, Repository } from 'typeorm';
 import { OrderPrewievDto } from '../dto/output/order-preview-dto';
 import { OrderStatus } from 'src/orders/Domain/valueobjects/OrderStatus';
@@ -11,13 +10,18 @@ import { Result } from 'src/common/result/Result';
 import { IVendorOrderService } from 'src/orders/Domain/ServiceInterfaces/IVendorOrderService';
 import { SalesReportDto } from '../dto/output/sales-report-dto';
 import { startOfMonth, endOfMonth, subMonths } from 'date-fns';
+import {
+  EMAIL_SERVICE,
+  type IEmailService,
+} from 'src/orders/Domain/ServiceInterfaces/IEmailService';
 
 @Injectable()
 export class VendorOrderService implements IVendorOrderService {
   constructor(
     @InjectRepository(Order)
     private readonly orderRepo: Repository<Order>,
-    private readonly emailService: EmailServie,
+    @Inject(EMAIL_SERVICE)
+    private readonly emailService: IEmailService,
   ) {}
 
   async ViewRestaurantOrdersByStatus(

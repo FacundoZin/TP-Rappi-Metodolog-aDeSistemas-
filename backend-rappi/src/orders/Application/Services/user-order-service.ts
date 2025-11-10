@@ -1,30 +1,50 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Order } from 'src/orders/Domain/entities/order.entity';
 import { In, Repository } from 'typeorm';
-import { ProductAdapter } from 'src/restaurants/Infraestructure/Adapters/product-adapter';
-import { RestaurantAdapter } from 'src/restaurants/Infraestructure/Adapters/restaurant-adapter';
 import { OrderMapper } from '../mappers/order-mapper';
 import { CreateOrderDto } from '../dto/input/create-order.dto';
 import { OrderPrewievDto } from '../dto/output/order-preview-dto';
 import { OrderStatusHelper } from 'src/orders/Domain/valueobjects/OrderStatus';
-import { EmailServie } from 'src/orders/Infraestructure/EmailService/email-service';
 import { Result } from 'src/common/result/Result';
 import { IUserOrderService } from 'src/orders/Domain/ServiceInterfaces/IUserOrderService';
-import { UserAdapter } from 'src/usersAccount/Infraestrucutre/Adapters/user-adapter';
-import { VendorAdapter } from 'src/vendorsAccount/Infrastructure/Adapter/vendor-adapter';
 import { OrderFullViewDto } from '../dto/output/order-fullview-dto';
+import {
+  type IProductProvider,
+  PRODUCT_PROVIDER,
+} from 'src/restaurants/domain/Ports/product-provider.interface';
+import {
+  type IRestaurantProvider,
+  RESTAURANT_PROVIDER,
+} from 'src/restaurants/domain/Ports/restaurant-provider.interface';
+import {
+  type IUserProviderInterface,
+  USER_PROVIDER,
+} from 'src/usersAccount/Domain/Ports/user-provider-interface';
+import {
+  type IVendorProvider,
+  VENDOR_PROVIDER,
+} from 'src/vendorsAccount/Domain/port/IVendorProvider';
+import {
+  EMAIL_SERVICE,
+  type IEmailService,
+} from 'src/orders/Domain/ServiceInterfaces/IEmailService';
 
 @Injectable()
 export class UserOrderService implements IUserOrderService {
   constructor(
     @InjectRepository(Order)
     private readonly orderRepo: Repository<Order>,
-    private readonly productAdapter: ProductAdapter,
-    private readonly restaurantAdapter: RestaurantAdapter,
-    private readonly vendorAdapter: VendorAdapter,
-    private readonly userAdapter: UserAdapter,
-    private readonly emailService: EmailServie,
+    @Inject(PRODUCT_PROVIDER)
+    private readonly productAdapter: IProductProvider,
+    @Inject(RESTAURANT_PROVIDER)
+    private readonly restaurantAdapter: IRestaurantProvider,
+    @Inject(VENDOR_PROVIDER)
+    private readonly vendorAdapter: IVendorProvider,
+    @Inject(USER_PROVIDER)
+    private readonly userAdapter: IUserProviderInterface,
+    @Inject(EMAIL_SERVICE)
+    private readonly emailService: IEmailService,
   ) {}
 
   async CreateOrder(

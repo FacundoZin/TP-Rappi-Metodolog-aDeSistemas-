@@ -19,9 +19,13 @@ import { RESTAURANT_PROVIDER } from './domain/Ports/restaurant-provider.interfac
 import { REVIEW_PROVIDER } from './domain/Ports/reviews-provider.interface';
 import { ReviewsAdapter } from './Infraestructure/Adapters/reviews-adapter';
 import { PRODUCT_MANAGER } from './domain/ServiceInterfaces/Managment/IProductManager';
+import { Product } from './domain/entities/product.entity';
+import { Review } from './domain/entities/review.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Restaurant, RestaurantAddress])],
+  imports: [
+    TypeOrmModule.forFeature([Restaurant, RestaurantAddress, Product, Review]),
+  ],
   providers: [
     RestaurantQueries,
     {

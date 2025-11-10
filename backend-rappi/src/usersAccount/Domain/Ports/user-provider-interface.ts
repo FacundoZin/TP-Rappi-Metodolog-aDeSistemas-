@@ -8,3 +8,5 @@ export interface IUserProviderInterface {
   ): Promise<Result<UserInfoForOrderDto>>;
   ProvideFavoritesRestaurants(idUser: string): Promise<string[]>;
 }
+
+export const USER_PROVIDER = Symbol('IUserProviderInterface');

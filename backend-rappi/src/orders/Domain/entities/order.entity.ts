@@ -6,10 +6,10 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { OrderItem } from './order-item.entity';
 import { OrderStatus } from '../valueobjects/OrderStatus';
 import { PaymentMethod } from '../valueobjects/PaymentMethod';
 import { UserVendor } from 'src/vendorsAccount/Domain/entities/vendor.entity';
+import { OrderItem } from './orderItem.entity';
 
 @Entity({ name: 'orders' })
 export class Order {

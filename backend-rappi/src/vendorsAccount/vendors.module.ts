@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserVendor } from './Domain/entities/vendor.entity';
 import { VENDOR_ACCOUNT_SERVICE } from './Domain/serviceInterface/IVendorAccountService';
 import { VendorAccountService } from './Application/Services/vendor-account-service';
+import { VENDOR_PROVIDER } from './Domain/port/IVendorProvider';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserVendor])],
@@ -12,8 +13,11 @@ import { VendorAccountService } from './Application/Services/vendor-account-serv
       provide: VENDOR_ACCOUNT_SERVICE,
       useClass: VendorAccountService,
     },
-    VendorAdapter,
+    {
+      provide: VENDOR_PROVIDER,
+      useClass: VendorAdapter,
+    },
   ],
-  exports: [VENDOR_ACCOUNT_SERVICE, VendorAdapter],
+  exports: [VENDOR_ACCOUNT_SERVICE, VENDOR_PROVIDER],
 })
 export class VendorsAccountModule {}

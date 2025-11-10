@@ -3,3 +3,5 @@ import { VendorOrderInfoDto } from 'src/vendorsAccount/Application/dto/vendor-or
 export interface IVendorProvider {
   ProvideVendorEmail(idRestaurant: string): Promise<VendorOrderInfoDto>;
 }
+
+export const VENDOR_PROVIDER = Symbol('IVendorProvider');

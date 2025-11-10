@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -7,9 +8,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CartItem } from 'src/carrito/Domain/entities/cart-item.entity';
 import { Cart } from 'src/carrito/Domain/entities/cart.entity';
 import { IUserCartService } from 'src/carrito/Domain/ServiceInterfaces/ICart-userService';
-import { ProductAdapter } from 'src/restaurants/Infraestructure/Adapters/product-adapter';
 import { Repository } from 'typeorm';
 import { AddItemToCartDto } from '../dto/Input/AddItemToCart';
+import * as productProviderInterface from 'src/restaurants/domain/Ports/product-provider.interface';
 
 Injectable();
 export class UserCartService implements IUserCartService {
@@ -20,7 +21,8 @@ export class UserCartService implements IUserCartService {
     @InjectRepository(CartItem)
     private readonly CartItemRepo: Repository<CartItem>,
 
-    private readonly productAdapter: ProductAdapter,
+    @Inject(productProviderInterface.PRODUCT_PROVIDER)
+    private readonly productAdapter: productProviderInterface.IProductProvider,
   ) {}
   async getCartByUser(userId: string): Promise<Cart> {
     const cart = await this.CartRepo.findOne({
