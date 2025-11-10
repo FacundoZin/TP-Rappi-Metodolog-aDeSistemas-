@@ -21,6 +21,9 @@ import { Review } from './restaurants/domain/entities/review.entity';
 import { Favorites } from './usersAccount/Domain/entities/favortes.entity';
 import { UserAddress } from './usersAccount/Domain/entities/user-address.entity';
 import { User } from './usersAccount/Domain/entities/user.entity';
+import { BackOfficeModule } from './backOffice/backOffice.module';
+import { Claim } from './backOffice/Domain/Entities/claim.entity';
+import { AdminGatewayModule } from './Gateways/AdminGateway/admin-gateway-module';
 
 @Module({
   imports: [
@@ -36,6 +39,7 @@ import { User } from './usersAccount/Domain/entities/user.entity';
       database: process.env.DB_DATABASE || 'nest_db',
       entities: [
         // Lista TODAS las entidades. Asegúrate de que las rutas de importación sean válidas.
+        Claim,
         Order,
         OrderItem,
         UserVendor,
@@ -51,6 +55,7 @@ import { User } from './usersAccount/Domain/entities/user.entity';
       ],
       synchronize: true, // OJO: Útil para desarrollo, pero PELIGROSO en producción
     }),
+    BackOfficeModule,
     UsersAccountModule,
     RestaurantsModule,
     VendorsAccountModule,
@@ -59,6 +64,7 @@ import { User } from './usersAccount/Domain/entities/user.entity';
     CarritoModule,
     UserGatewayModule,
     VendorGatewayModule,
+    AdminGatewayModule,
   ],
 })
 export class AppModule {}

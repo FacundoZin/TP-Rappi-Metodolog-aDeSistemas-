@@ -7,9 +7,15 @@ import { restaurantAddressManagerController } from './Controllers/restaurantAddr
 import { RestaurantManagerController } from './Controllers/restaurantManager-controller';
 import { RestaurantProductsManagerController } from './Controllers/restaurantProductsManager-controller';
 import { VendorsAccountModule } from 'src/vendorsAccount/vendors.module';
+import { BackOfficeModule } from 'src/backOffice/backOffice.module';
 
 @Module({
-  imports: [VendorsAccountModule, RestaurantsModule, OrdersModule],
+  imports: [
+    VendorsAccountModule,
+    RestaurantsModule,
+    OrdersModule,
+    BackOfficeModule,
+  ],
   controllers: [
     VendorAccountController,
     VendorOrdersController,

@@ -12,9 +12,16 @@ import { UserFavoritesController } from './Controllers/favorites-restaurants-con
 import { UserRewievsController } from './Controllers/user-reviews-controller';
 import { UserClaimsController } from './Controllers/user-claims-controller';
 import { VendorClaimsController } from '../VendorGateway/Controllers/vendor-claims-controller';
+import { BackOfficeModule } from 'src/backOffice/backOffice.module';
 
 @Module({
-  imports: [UsersAccountModule, CarritoModule, OrdersModule, RestaurantsModule],
+  imports: [
+    UsersAccountModule,
+    CarritoModule,
+    OrdersModule,
+    RestaurantsModule,
+    BackOfficeModule,
+  ],
   controllers: [
     UserFavoritesController,
     UserAccountController,

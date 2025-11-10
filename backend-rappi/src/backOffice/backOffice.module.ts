@@ -12,12 +12,14 @@ import { CLAIM_SERVICE } from './Domain/serviceInterfaces/IClaimService';
 import { ClaimService } from './Application/Services/ClaimService';
 import { CLAIM_MANAGMENT_SERVICE } from './Domain/serviceInterfaces/IClaimManagmentService';
 import { ClaimModerationService } from './Application/Services/ClaimModerationService';
+import { OrdersModule } from 'src/orders/orders.module';
 
 @Module({
   imports: [
     RestaurantsModule,
     UsersAccountModule,
     VendorsAccountModule,
+    OrdersModule,
     TypeOrmModule.forFeature([Claim]),
   ],
   providers: [

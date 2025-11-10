@@ -1,6 +1,6 @@
 import { ReviewDto } from 'src/common/Dtos/review.dto';
 import { Result } from 'src/common/result/Result';
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject } from '@nestjs/common';
 import {
   type IRestaurantReviewModeration,
   RESTAURANT_REVIEW_MODERATION,

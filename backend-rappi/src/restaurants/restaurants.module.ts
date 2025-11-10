@@ -21,6 +21,10 @@ import { ReviewsAdapter } from './Infraestructure/Adapters/reviews-adapter';
 import { PRODUCT_MANAGER } from './domain/ServiceInterfaces/Managment/IProductManager';
 import { Product } from './domain/entities/product.entity';
 import { Review } from './domain/entities/review.entity';
+import { RESTAURANT_MODERATION_SERVICE } from './domain/ServiceInterfaces/Moderation/IRestaurantModeration';
+import { RestaurantModerationService } from './Application/Services/Moderation/restaurantModeration';
+import { RESTAURANT_REVIEW_MODERATION } from './domain/ServiceInterfaces/Moderation/IRestaurantRewievModeration';
+import { RestaurantReviewsModerationService } from './Application/Services/Moderation/restaurantReviewsModeration';
 
 @Module({
   imports: [
@@ -60,6 +64,14 @@ import { Review } from './domain/entities/review.entity';
       provide: REVIEW_PROVIDER,
       useClass: ReviewsAdapter,
     },
+    {
+      provide: RESTAURANT_MODERATION_SERVICE,
+      useClass: RestaurantModerationService,
+    },
+    {
+      provide: RESTAURANT_REVIEW_MODERATION,
+      useClass: RestaurantReviewsModerationService,
+    },
   ],
   exports: [
     REVIEW_SERVICE,
@@ -70,6 +82,8 @@ import { Review } from './domain/entities/review.entity';
     PRODUCT_PROVIDER,
     RESTAURANT_PROVIDER,
     REVIEW_PROVIDER,
+    RESTAURANT_MODERATION_SERVICE,
+    RESTAURANT_REVIEW_MODERATION,
   ],
 })
 export class RestaurantsModule {}
