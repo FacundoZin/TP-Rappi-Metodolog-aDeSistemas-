@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen bg-gray-50 text-gray-800">
-    <NavBar v-if="$route.name !== 'login'" @search="searchParams = $event" />
+    <NavBar @search="searchParams = $event" />
 
     <router-view :searchParams="searchParams"></router-view>
   </div>
