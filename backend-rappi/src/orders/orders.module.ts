@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { VendorOrderService } from './Application/Services/vendor-order-service';
 import { UserOrderService } from './Application/Services/user-order-service';
-import { RestaurantsModule } from 'src/restaurants/restaurants.module';
+import { RestaurantsModule } from '../restaurants/restaurants.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Order } from './Domain/entities/order.entity';
 import { USER_ORDER_SERVICE } from './Domain/ServiceInterfaces/IUserOrderService';
 import { VENDOR_ORDER_SERVICE } from './Domain/ServiceInterfaces/IVendorOrderService';
-import { VendorsAccountModule } from 'src/vendorsAccount/vendors.module';
+import { VendorsAccountModule } from '../vendorsAccount/vendors.module';
 import { EmailServie } from './Infraestructure/EmailService/email-service';
-import { UsersAccountModule } from 'src/usersAccount/userAccount.module';
+import { UsersAccountModule } from '../usersAccount/userAccount.module';
 import { EMAIL_SERVICE } from './Domain/ServiceInterfaces/IEmailService';
 import { ORDER_ADAPTER } from './Domain/ports/IOrderProvider';
 import { orderAdapter } from './Infraestructure/Adapter/orderAdapter';

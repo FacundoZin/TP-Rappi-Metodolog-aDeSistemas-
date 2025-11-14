@@ -1,5 +1,5 @@
 import { IsString, IsNotEmpty, IsEnum } from 'class-validator';
-import { RestaurantAddress } from 'src/restaurants/domain/entities/restaurant-addres';
+import { RestaurantAddress } from 'src/restaurants/domain/entities/restaurant-addres.entity';
 import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
 import { RestaurantCategory } from 'src/restaurants/domain/Enums/Restaurant.category';
 import { UserVendor } from 'src/vendorsAccount/Domain/entities/vendor.entity';

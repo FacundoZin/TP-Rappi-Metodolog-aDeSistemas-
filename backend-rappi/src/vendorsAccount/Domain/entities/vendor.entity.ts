@@ -1,6 +1,6 @@
-import { UserRole } from 'src/common/enum/user-role';
-import { Order } from 'src/orders/Domain/entities/order.entity';
-import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
+import { UserRole } from '../../../common/enum/user-role';
+import { Order } from '../../../orders/Domain/entities/order.entity';
+import { Restaurant } from '../../../restaurants/domain/entities/restaurant.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'vendor' })

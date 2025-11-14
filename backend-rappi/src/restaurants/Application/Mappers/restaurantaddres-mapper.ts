@@ -1,4 +1,4 @@
-import { RestaurantAddress } from 'src/restaurants/domain/entities/restaurant-addres';
+import { RestaurantAddress } from 'src/restaurants/domain/entities/restaurant-addres.entity';
 import { CreateRestaurantAddressDto } from '../Dtos/Addres/Input/create.restaurantAddress.dto';
 import { UpdateRestaurantAddressDto } from '../Dtos/Addres/Input/update-restaurantAddress.dto';
 

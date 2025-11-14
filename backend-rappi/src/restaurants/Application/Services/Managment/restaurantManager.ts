@@ -1,7 +1,7 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Restaurant } from 'src/restaurants/domain/entities/restaurant.entity';
-import { RestaurantAddress } from 'src/restaurants/domain/entities/restaurant-addres';
+import { RestaurantAddress } from 'src/restaurants/domain/entities/restaurant-addres.entity';
 
 import { Injectable } from '@nestjs/common';
 import { Result } from 'src/common/result/Result';

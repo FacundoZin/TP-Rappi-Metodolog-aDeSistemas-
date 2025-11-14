@@ -4,7 +4,7 @@ import { RestaurantQueries } from './Infraestructure/Queries/Restaurant.Queries'
 import { Restaurant } from './domain/entities/restaurant.entity';
 import { ProductAdapter } from './Infraestructure/Adapters/product-adapter';
 import { RestaurantAdapter } from './Infraestructure/Adapters/restaurant-adapter';
-import { RestaurantAddress } from './domain/entities/restaurant-addres';
+import { RestaurantAddress } from './domain/entities/restaurant-addres.entity';
 import { RESTAURANT_ADDRESS_MANAGER } from './domain/ServiceInterfaces/Managment/IRestaurantAddresManager';
 import { RESTAURANT_PUBLIC_SERVICE } from './domain/ServiceInterfaces/Discovery/IRestaurantPublicService';
 import { RESTAURANT_MANAGER } from './domain/ServiceInterfaces/Managment/IRestaurantManager';

@@ -1,18 +1,22 @@
 import { Module } from '@nestjs/common';
-import { RestaurantsModule } from 'src/restaurants/restaurants.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+// Rutas relativas
+import { RestaurantsModule } from '../restaurants/restaurants.module';
+import { UsersAccountModule } from '../usersAccount/userAccount.module';
+import { VendorsAccountModule } from '../vendorsAccount/vendors.module';
+import { OrdersModule } from '../orders/orders.module';
+import { Claim } from './Domain/Entities/claim.entity';
+
+// Services e interfaces
 import { BACKOFFICE_RESTAURANT_MODERATION_SERVICE } from './Domain/serviceInterfaces/IBackOfficeRestarantModerationService';
 import { BACKOFFICE_RESTAURANREVIEW_MODERATION_SERVICE } from './Domain/serviceInterfaces/IBackOfficeReviewsModerationService';
 import { BackOfficeRestaurantModerationService } from './Application/Services/BackOfficeRestaurantModerationService';
 import { BackOfficeRestaurantReviewModerationService } from './Application/Services/BackOfficeRestaurantReviewModerationService';
-import { UsersAccountModule } from 'src/usersAccount/userAccount.module';
-import { VendorsAccountModule } from 'src/vendorsAccount/vendors.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Claim } from './Domain/Entities/claim.entity';
 import { CLAIM_SERVICE } from './Domain/serviceInterfaces/IClaimService';
 import { ClaimService } from './Application/Services/ClaimService';
 import { CLAIM_MANAGMENT_SERVICE } from './Domain/serviceInterfaces/IClaimManagmentService';
 import { ClaimModerationService } from './Application/Services/ClaimModerationService';
-import { OrdersModule } from 'src/orders/orders.module';
 
 @Module({
   imports: [

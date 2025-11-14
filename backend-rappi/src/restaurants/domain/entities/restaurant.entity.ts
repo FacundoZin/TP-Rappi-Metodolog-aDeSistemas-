@@ -8,9 +8,9 @@ import {
 } from 'typeorm';
 
 import { Product } from './product.entity';
-import { RestaurantAddress } from './restaurant-addres';
+import { RestaurantAddress } from './restaurant-addres.entity';
 import { Review } from './review.entity';
-import { UserVendor } from 'src/vendorsAccount/Domain/entities/vendor.entity';
+import { UserVendor } from '../../../vendorsAccount/Domain/entities/vendor.entity';
 import { RestaurantStatus } from '../Enums/Restaurant.status';
 import { RestaurantCategory } from '../Enums/Restaurant.category';
 

@@ -15,7 +15,7 @@ import { UserVendor } from './vendorsAccount/Domain/entities/vendor.entity';
 import { Restaurant } from './restaurants/domain/entities/restaurant.entity';
 import { Cart } from './carrito/Domain/entities/cart.entity';
 import { CartItem } from './carrito/Domain/entities/cart-item.entity';
-import { RestaurantAddress } from './restaurants/domain/entities/restaurant-addres';
+import { RestaurantAddress } from './restaurants/domain/entities/restaurant-addres.entity';
 import { Product } from './restaurants/domain/entities/product.entity';
 import { Review } from './restaurants/domain/entities/review.entity';
 import { Favorites } from './usersAccount/Domain/entities/favortes.entity';
@@ -53,7 +53,8 @@ import { AdminGatewayModule } from './Gateways/AdminGateway/admin-gateway-module
         UserAddress,
         User,
       ],
-      synchronize: true, // OJO: Útil para desarrollo, pero PELIGROSO en producción
+      synchronize: false,
+      migrationsRun: false,
     }),
     BackOfficeModule,
     UsersAccountModule,

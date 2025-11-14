@@ -1,7 +1,7 @@
 // restaurant-address.service.ts
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { RestaurantAddress } from 'src/restaurants/domain/entities/restaurant-addres';
+import { RestaurantAddress } from 'src/restaurants/domain/entities/restaurant-addres.entity';
 import { Injectable } from '@nestjs/common';
 import { Result } from 'src/common/result/Result';
 import { IRestaurantAddressManager } from 'src/restaurants/domain/ServiceInterfaces/Managment/IRestaurantAddresManager';
